@@ -6,7 +6,7 @@
 <title>SuGanit Bio-Renewables — Sustainability is our DNA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ─────────────────────────────────────────────────────────────────────────────
    TOKENS — Fresh green palette inspired by forhers.com editorial style
@@ -43,13 +43,15 @@
   --line-soft:   #EAEEDE;
 
   /* Type */
-  --serif:  "Fraunces", "Playfair Display", Georgia, serif;
+  --serif:  "Cormorant Garamond", "Times New Roman", serif;
   --sans:   "Inter", system-ui, -apple-system, sans-serif;
 
   /* Size */
   --max:    1200px;
   --prose:  680px;
   --nav-h:  72px;
+  /* Fixed bar content height + status bar / notch (for hero offset & scroll snap). */
+  --nav-stack-h: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
 
   /* Radius */
   --r-sm: 8px;
@@ -67,18 +69,112 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
+   LARGE DISPLAYS — Studio Display, 24–27" monitors, wide windows (~1440–2400+)
+───────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1440px) {
+  :root {
+    --max: 1320px;
+    --prose: 720px;
+  }
+  body { font-size: 18px; }
+  .wrap {
+    padding-left: max(40px, env(safe-area-inset-left, 0px));
+    padding-right: max(40px, env(safe-area-inset-right, 0px));
+  }
+  .nav > .wrap {
+    padding-left: max(40px, env(safe-area-inset-left, 0px));
+    padding-right: max(40px, env(safe-area-inset-right, 0px));
+  }
+  .section-head { max-width: 820px; }
+  .section-head-xl { max-width: 960px; }
+  .section-head-row { gap: 80px; }
+  .hero-grid { gap: 72px; grid-template-columns: 1fr 1.38fr; }
+  .hero-process-stage { max-width: min(840px, 100%); }
+  .hero-visual { min-height: 480px; }
+  .hero-sub { max-width: 560px; font-size: 1.22rem; }
+  .hero-highlights { max-width: 580px; }
+  .feature-card { padding: 80px 72px; gap: 64px; }
+  .pillars { gap: 22px; }
+  .about-grid { gap: 80px; }
+  .contact-grid { gap: 80px; }
+}
+@media (min-width: 1800px) {
+  :root {
+    --max: 1480px;
+    --prose: 760px;
+  }
+  .section-head { max-width: 880px; }
+  .section-head-xl { max-width: 1020px; }
+  .section-head-row { gap: 88px; }
+  .hero-grid { gap: 80px; grid-template-columns: 1fr 1.42fr; }
+  .hero-process-stage { max-width: min(920px, 100%); }
+  .hero-visual { min-height: 520px; }
+  .hero-head {
+    font-size: clamp(2.85rem, 3.85vw, 4.85rem);
+  }
+  .feature-card { padding: 88px 80px; gap: 72px; }
+}
+@media (min-width: 2200px) {
+  :root {
+    --max: 1640px;
+    --prose: 800px;
+  }
+  body { font-size: 19px; }
+  .wrap {
+    padding-left: max(48px, env(safe-area-inset-left, 0px));
+    padding-right: max(48px, env(safe-area-inset-right, 0px));
+  }
+  .nav > .wrap {
+    padding-left: max(48px, env(safe-area-inset-left, 0px));
+    padding-right: max(48px, env(safe-area-inset-right, 0px));
+  }
+  .section-head { max-width: 920px; }
+  .section-head-xl { max-width: 1080px; }
+  .section-head-row { gap: 96px; margin-bottom: 64px; }
+  .hero-grid { gap: 88px; grid-template-columns: 1fr 1.45fr; }
+  .hero-process-stage { max-width: min(1000px, 100%); }
+  .hero-visual { min-height: 560px; }
+  .hero-sub { max-width: 600px; }
+  .hero-highlights { max-width: 620px; }
+  .feature-card { padding: 96px 88px; gap: 80px; }
+  .band { margin: 16px 24px; }
+  .photo-banner { margin: 16px 24px; }
+  .about-grid { gap: 96px; }
+  .contact-grid { gap: 96px; }
+  .py-xl { padding-top: 140px; padding-bottom: 140px; }
+  .pt-xl { padding-top: 140px; }
+  .pb-xl { padding-bottom: 140px; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
    RESET & BASE
 ───────────────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  scroll-padding-top: var(--nav-stack-h);
+}
 body {
   background: var(--cream);
   color: var(--ink);
-  font-family: var(--sans);
+  font-family: "Inter", sans-serif;
   font-size: 17px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+button {
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+nav {
+  font-family: "Inter", sans-serif;
+}
+h1, h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
 }
 a { color: inherit; text-decoration: none; }
 .visually-hidden {
@@ -93,7 +189,6 @@ a { color: inherit; text-decoration: none; }
   border: 0;
 }
 img { display: block; max-width: 100%; }
-button { font-family: inherit; cursor: pointer; }
 ::selection { background: var(--mint-200); color: var(--forest); }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -103,10 +198,15 @@ button { font-family: inherit; cursor: pointer; }
   width: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 32px;
+  padding-left: max(32px, env(safe-area-inset-left, 0px));
+  padding-right: max(32px, env(safe-area-inset-right, 0px));
 }
 .wrap-narrow {
   max-width: 960px;
+}
+
+section[id] {
+  scroll-margin-top: var(--nav-stack-h);
 }
 
 .band {
@@ -133,7 +233,7 @@ button { font-family: inherit; cursor: pointer; }
 .py-md { padding-top: 64px;  padding-bottom: 64px; }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   TYPOGRAPHY — Fraunces display (italic available), Inter body
+   TYPOGRAPHY — Cormorant Garamond display (h1–h2, .display), Inter UI
 ───────────────────────────────────────────────────────────────────────────── */
 .display {
   font-family: var(--serif);
@@ -141,7 +241,6 @@ button { font-family: inherit; cursor: pointer; }
   letter-spacing: -0.025em;
   line-height: 1.02;
   color: var(--ink);
-  font-variation-settings: "opsz" 144;
 }
 .display-xl { font-size: clamp(3rem, 7vw, 5.4rem); }
 .display-lg { font-size: clamp(2.4rem, 5vw, 4rem); }
@@ -248,7 +347,7 @@ button { font-family: inherit; cursor: pointer; }
 .nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 200;
-  height: var(--nav-h);
+  padding-top: env(safe-area-inset-top, 0px);
   background-color: var(--cream);
   border-bottom: 1px solid transparent;
   box-shadow: 0 0 0 rgba(12,26,16,0);
@@ -266,8 +365,12 @@ button { font-family: inherit; cursor: pointer; }
 .nav.on-dark .btn-dark:hover        { background: var(--mint-100); }
 .nav > .wrap {
   max-width: none;
-  padding: 0;
   width: 100%;
+  margin: 0 auto;
+  padding-left: max(32px, env(safe-area-inset-left, 0px));
+  padding-right: max(32px, env(safe-area-inset-right, 0px));
+  height: var(--nav-h);
+  box-sizing: border-box;
 }
 .nav-inner {
   display: grid;
@@ -287,7 +390,6 @@ button { font-family: inherit; cursor: pointer; }
   height: 45px;
   width: auto;
   max-width: 220px;
-  padding-left: 15px;
 }
 .footer-brand-logo {
   display: block;
@@ -299,7 +401,7 @@ button { font-family: inherit; cursor: pointer; }
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 36px;
+  gap: clamp(16px, 2vw, 28px);
   justify-self: center;
   align-items: center;
 }
@@ -307,10 +409,133 @@ button { font-family: inherit; cursor: pointer; }
   justify-self: end;
   display: flex;
   align-items: center;
-  padding: 20px;
+  gap: 10px;
+}
+body.nav-no-scroll {
+  overflow: hidden;
+}
+.nav-menu-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--deep);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.nav-menu-btn:hover { background: var(--mint-100); }
+.nav-menu-btn:focus-visible {
+  outline: 2px solid var(--leaf-2);
+  outline-offset: 2px;
+}
+.nav-menu-btn .nav-menu-icon,
+.nav-menu-btn .nav-menu-icon::before,
+.nav-menu-btn .nav-menu-icon::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  position: relative;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.nav-menu-btn .nav-menu-icon::before,
+.nav-menu-btn .nav-menu-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+.nav-menu-btn .nav-menu-icon::before { top: -6px; }
+.nav-menu-btn .nav-menu-icon::after { top: 6px; }
+.nav--menu-open .nav-menu-btn .nav-menu-icon {
+  background: transparent;
+}
+.nav--menu-open .nav-menu-btn .nav-menu-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.nav--menu-open .nav-menu-btn .nav-menu-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+.nav-mobile-panel {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--nav-stack-h);
+  bottom: 0;
+  z-index: 199;
+  background: var(--cream);
+  border-top: 1px solid var(--line-soft);
+  padding: 20px max(20px, env(safe-area-inset-right)) 28px max(20px, env(safe-area-inset-left));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.nav--menu-open .nav-mobile-panel {
+  display: block;
+}
+.nav-mobile-panel .nav-links {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  justify-self: stretch;
+}
+.nav-mobile-panel .nav-links li {
+  border-bottom: 1px solid var(--line-soft);
+}
+.nav-mobile-panel .nav-links a {
+  display: block;
+  padding: 16px 4px;
+  font-size: 1.05rem;
+}
+.nav-mobile-panel .nav-links a::after { display: none; }
+.nav-mobile-cta {
+  margin-top: 24px;
+  width: 100%;
+  justify-content: center;
+}
+.nav .nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: var(--nav-stack-h) 0 0 0;
+  z-index: 198;
+  background: rgba(10, 58, 31, 0.22);
+}
+.nav--menu-open .nav-backdrop { display: block; }
+
+@media (max-width: 900px) {
+  .nav-links--desktop { display: none !important; }
+  .nav-cta-desktop { display: none !important; }
+  .nav-menu-btn { display: inline-flex; }
+  .nav-inner {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+  .nav-brand-logo {
+    max-width: min(220px, 58vw);
+  }
+}
+@media (max-width: 768px) {
+  .nav > .wrap {
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
+  }
+}
+@media (max-width: 640px) {
+  .nav > .wrap {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
 }
 .nav-links a {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--ink-3);
   padding: 6px 0;
@@ -337,19 +562,32 @@ button { font-family: inherit; cursor: pointer; }
 /* ─────────────────────────────────────────────────────────────────────────────
    HERO — Soft mint band, editorial display
 ───────────────────────────────────────────────────────────────────────────── */
+.hero-wrap {
+  position: relative;
+}
 .hero {
   background: linear-gradient(180deg, var(--mint-50) 0%, var(--mint-100) 70%, var(--mint-100) 100%);
-  padding-top: calc(var(--nav-h) + 72px);
+  padding-top: calc(var(--nav-stack-h) + 40px);
   padding-bottom: 80px;
   border-bottom-left-radius: var(--r-2xl);
   border-bottom-right-radius: var(--r-2xl);
   position: relative;
   overflow: hidden;
 }
+.hero > .wrap {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+@media (max-width: 640px) {
+  .hero > .wrap {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 72px;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 56px;
   align-items: center;
   position: relative;
   z-index: 2;
@@ -357,15 +595,18 @@ button { font-family: inherit; cursor: pointer; }
 .hero-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--forest);
-  background: #fff;
-  padding: 8px 16px;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--forest-2);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 10px 18px;
   border-radius: var(--r-pill);
-  border: 1px solid var(--line);
-  margin-bottom: 32px;
+  border: 1px solid var(--line-soft);
+  margin-bottom: 28px;
+  box-shadow: var(--sh-xs);
 }
 .hero-pill-dot {
   width: 8px; height: 8px;
@@ -375,19 +616,28 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hero-head {
   font-family: var(--serif);
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  font-size: clamp(2.65rem, 5.8vw, 4.35rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
   color: var(--deep);
-  margin-bottom: 28px;
-  font-variation-settings: "opsz" 144;
+  margin-bottom: 24px;
 }
-.hero-copy {}
-.hero-head em {
+.hero-copy {
+  margin-left: 0;
+  max-width: none;
+}
+.hero-head-line--row {
+  display: block;
+  color: var(--deep);
+}
+.hero-head-line--row + .hero-head-line--row {
+  margin-top: 0.04em;
+}
+.hero-head-line--last em {
   font-style: italic;
-  font-weight: 400;
-  color: var(--leaf-2);
+  font-weight: 500;
+  color: var(--leaf);
 }
 .hero-sub {
   font-size: 1.2rem;
@@ -411,10 +661,311 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hero-social-stars { color: #D4A017; letter-spacing: 2px; font-size: 16px; }
 
-/* Hero visual — layered botanical */
+.hero-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 3vw, 22px);
+  margin-top: 36px;
+  max-width: 540px;
+}
+.platform-output-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 520px) {
+  .platform-output-grid { grid-template-columns: 1fr; }
+}
+.hero-hl {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hero-hl-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--line-soft);
+  box-shadow: var(--sh-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--forest);
+  flex-shrink: 0;
+}
+.hero-hl-text {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  line-height: 1.35;
+}
+
+/* Hero visual — process diagram (right column) */
 .hero-visual {
   position: relative;
-  height: 520px;
+  height: auto;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-process-stage {
+  position: relative;
+  width: 100%;
+  max-width: min(720px, 100%);
+  margin-left: auto;
+  overflow: visible;
+}
+/*
+ * Ambient only — bleeds into .hero’s mint gradient; no panel, mask, or frame edge.
+ * Asymmetric organic blurs echo the section background so the diagram isn’t a separate “card”.
+ */
+.hero-process-ambient {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: -20% -26% -16% -14%;
+}
+.hero-process-ambient::before,
+.hero-process-ambient::after {
+  content: '';
+  position: absolute;
+  filter: blur(46px);
+  will-change: transform, opacity;
+}
+/* Large wash — upper left */
+.hero-process-ambient::before {
+  width: 78%;
+  height: 72%;
+  left: -14%;
+  top: -6%;
+  border-radius: 58% 42% 52% 48% / 46% 54% 44% 56%;
+  background:
+    radial-gradient(ellipse 70% 65% at 40% 38%, rgba(255, 255, 255, 0.42) 0%, transparent 62%),
+    radial-gradient(ellipse 100% 90% at 28% 32%, rgba(241, 247, 238, 0.95) 0%, rgba(230, 241, 224, 0.35) 52%, transparent 74%),
+    repeating-linear-gradient(
+      118deg,
+      transparent 0,
+      transparent 24px,
+      rgba(61, 168, 105, 0.04) 24px,
+      rgba(61, 168, 105, 0.04) 25px
+    );
+  background-size: auto, auto, 140% 140%;
+  animation:
+    hero-ambient-a 32s ease-in-out infinite,
+    hero-ambient-drift 48s linear infinite;
+}
+/* Deeper sage pocket — lower right */
+.hero-process-ambient::after {
+  width: 70%;
+  height: 68%;
+  right: -18%;
+  bottom: -12%;
+  border-radius: 45% 55% 48% 52% / 52% 44% 56% 48%;
+  background:
+    radial-gradient(ellipse 80% 72% at 62% 58%, rgba(213, 232, 200, 0.65) 0%, rgba(230, 241, 224, 0.28) 48%, transparent 72%);
+  animation: hero-ambient-b 40s ease-in-out infinite;
+  animation-delay: -12s;
+}
+.hero-process-ambient-blob {
+  position: absolute;
+  width: 48%;
+  height: 54%;
+  left: 32%;
+  top: 28%;
+  border-radius: 54% 46% 62% 38% / 40% 58% 42% 58%;
+  filter: blur(38px);
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.38) 0%, rgba(241, 247, 238, 0.55) 38%, transparent 68%);
+  animation: hero-ambient-c 26s ease-in-out infinite;
+  animation-delay: -7s;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+@keyframes hero-ambient-a {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.82;
+  }
+  22% {
+    transform: translate(8%, -7%) rotate(8deg) scale(1.08);
+    opacity: 0.94;
+  }
+  48% {
+    transform: translate(2%, 5%) rotate(-3deg) scale(0.97);
+    opacity: 0.78;
+  }
+  72% {
+    transform: translate(-7%, -3%) rotate(5deg) scale(1.05);
+    opacity: 0.9;
+  }
+}
+@keyframes hero-ambient-drift {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 0 0, 0 0, 48px 36px; }
+}
+@keyframes hero-ambient-b {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.88;
+  }
+  30% {
+    transform: translate(-10%, 8%) rotate(-10deg) scale(1.1);
+    opacity: 0.95;
+  }
+  55% {
+    transform: translate(4%, -4%) rotate(4deg) scale(0.96);
+    opacity: 0.75;
+  }
+  80% {
+    transform: translate(-5%, 6%) rotate(-5deg) scale(1.04);
+    opacity: 0.88;
+  }
+}
+@keyframes hero-ambient-c {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.65;
+  }
+  35% {
+    transform: translate(-8%, 10%) rotate(12deg) scale(1.12);
+    opacity: 0.82;
+  }
+  65% {
+    transform: translate(6%, -5%) rotate(-8deg) scale(0.94);
+    opacity: 0.58;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-process-ambient::before,
+  .hero-process-ambient::after,
+  .hero-process-ambient-blob {
+    animation: none !important;
+  }
+}
+
+/* Sparse geometric accents — sit above ambient, below diagram; asymmetric, not concentric */
+.hero-process-geo {
+  position: absolute;
+  inset: -8% -10% -6% -10%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+.hero-process-geo::before {
+  content: '';
+  position: absolute;
+  inset: 4%;
+  border-radius: 40% 60% 50% 50% / 45% 45% 55% 55%;
+  opacity: 0.45;
+  background-image:
+    repeating-linear-gradient(
+      112deg,
+      transparent 0,
+      transparent 20px,
+      rgba(61, 168, 105, 0.05) 20px,
+      rgba(61, 168, 105, 0.05) 21px
+    ),
+    repeating-linear-gradient(
+      -18deg,
+      transparent 0,
+      transparent 26px,
+      rgba(15, 77, 42, 0.028) 26px,
+      rgba(15, 77, 42, 0.028) 27px
+    );
+  background-size: 120% 120%;
+  animation: hero-geo-grid-flow 42s linear infinite;
+  mask-image: radial-gradient(ellipse 92% 88% at 48% 52%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 48% 52%, #000 0%, transparent 78%);
+  pointer-events: none;
+}
+.hero-geo-el {
+  position: absolute;
+  box-sizing: border-box;
+  pointer-events: none;
+  will-change: transform;
+}
+/* Wide ring — upper left, slow CW */
+.hero-geo-el--ring {
+  width: min(58%, 440px);
+  aspect-ratio: 1;
+  top: 2%;
+  left: -10%;
+  border: 1.25px solid rgba(61, 168, 105, 0.2);
+  border-radius: 50%;
+  animation: hero-geo-rotate 64s linear infinite;
+}
+/* Smaller dashed ring — lower right, CCW */
+.hero-geo-el--ring-dash {
+  width: min(36%, 280px);
+  aspect-ratio: 1;
+  right: -4%;
+  bottom: 10%;
+  border: 1px dashed rgba(53, 158, 96, 0.22);
+  border-radius: 50%;
+  animation: hero-geo-rotate 48s linear infinite reverse;
+}
+/* Facet — mid height, left; gentle wobble + spin */
+.hero-geo-el--facet {
+  width: min(22%, 180px);
+  aspect-ratio: 1;
+  top: 38%;
+  left: 4%;
+  border: 1px solid rgba(61, 168, 105, 0.14);
+  border-radius: 26% 74% 40% 60% / 38% 42% 58% 62%;
+  animation: hero-geo-facet 52s ease-in-out infinite;
+}
+/* Quarter-arc — top right; reads as edge of a larger circle */
+.hero-geo-el--arc {
+  width: min(44%, 340px);
+  aspect-ratio: 1;
+  top: 12%;
+  right: -6%;
+  border: 1.25px solid transparent;
+  border-top-color: rgba(46, 149, 87, 0.18);
+  border-right-color: rgba(46, 149, 87, 0.18);
+  border-radius: 50%;
+  animation: hero-geo-rotate 72s linear infinite;
+}
+@keyframes hero-geo-grid-flow {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 36px 28px, -32px 24px; }
+}
+@keyframes hero-geo-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes hero-geo-facet {
+  0%, 100% { transform: rotate(-8deg) scale(1); }
+  33% { transform: rotate(6deg) scale(1.03); }
+  66% { transform: rotate(-14deg) scale(0.98); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-process-geo::before,
+  .hero-geo-el--ring,
+  .hero-geo-el--ring-dash,
+  .hero-geo-el--facet,
+  .hero-geo-el--arc {
+    animation: none !important;
+  }
+}
+
+.hero-process-frame.process-diagram-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  /* Softer, green-tinted depth — reads as continuation of hero band, not a floating tile */
+  border-radius: clamp(22px, 3.2vw, var(--r-xl));
+  filter:
+    drop-shadow(0 14px 36px rgba(61, 168, 105, 0.09))
+    drop-shadow(0 4px 14px rgba(12, 26, 16, 0.04));
+}
+.hero-process-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
 }
 .visual-card {
   position: absolute;
@@ -606,8 +1157,6 @@ button { font-family: inherit; cursor: pointer; }
   filter: drop-shadow(0 16px 28px rgba(15,77,42,0.22));
 }
 
-.hero-wrap { position: relative; }
-
 /* ─────────────────────────────────────────────────────────────────────────────
    FALLING LEAVES — leaves fall from top and settle at the bottom as residue
 ───────────────────────────────────────────────────────────────────────────── */
@@ -793,7 +1342,7 @@ button { font-family: inherit; cursor: pointer; }
 .pillar-card {
   background: #fff;
   border-radius: var(--r-xl);
-  padding: 42px 38px;
+  padding: 28px 26px;
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line-soft);
@@ -812,21 +1361,21 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 72px;
+  font-size: 58px;
   color: var(--leaf-2);
   line-height: 1;
   opacity: 0.5;
   position: absolute;
-  top: 24px; right: 32px;
+  top: 18px; right: 22px;
 }
 .pillar-head {
   font-family: var(--serif);
-  font-size: 1.9rem;
+  font-size: 2.05rem;
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--deep);
-  line-height: 1.1;
-  margin-top: 80px;
+  line-height: 1.12;
+  margin-top: 0;
   margin-bottom: 0;
 }
 .pillar-head em {
@@ -834,22 +1383,10 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--leaf-2);
 }
 .pillar-body {
-  font-size: 15.5px;
-  line-height: 1.7;
+  font-size: 16.5px;
+  line-height: 1.65;
   color: var(--ink-2);
-  max-width: 480px;
-}
-.pillar-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--leaf-2);
-  background: rgba(61,168,105,0.12);
-  padding: 4px 12px;
-  border-radius: var(--r-pill);
-  margin-bottom: 14px;
+  max-width: 36em;
 }
 
 /* ─── Hover-reveal for ALL data tiles ───────────────────────────────────────
@@ -978,6 +1515,11 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 1rem;
   color: var(--ink-2);
 }
+.feature-bullet:focus-visible {
+  outline: 2px solid var(--leaf-2);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
 .feature-bullet-icon {
   width: 26px; height: 26px;
   border-radius: 50%;
@@ -989,6 +1531,43 @@ button { font-family: inherit; cursor: pointer; }
 .feature-bullet-text strong {
   color: var(--deep);
   font-weight: 600;
+}
+.feature-bullet-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.feature-bullet-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1.35s cubic-bezier(0.33, 0, 0.25, 1);
+}
+.feature-bullet-detail-inner {
+  overflow: hidden;
+  min-height: 0;
+  padding-top: 0.3em;
+}
+.feature-bullet:hover .feature-bullet-detail,
+.feature-bullet:focus-within .feature-bullet-detail {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+@media (hover: none), (pointer: coarse) {
+  .feature-bullet-detail {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feature-bullet-detail {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transition: none;
+  }
 }
 .feature-visual {
   position: relative;
@@ -1140,7 +1719,6 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--leaf);
   opacity: 0.25;
   font-weight: 500;
-  font-variation-settings: "opsz" 144;
 }
 .quote-attr {
   margin-top: 32px;
@@ -1815,8 +2393,9 @@ button { font-family: inherit; cursor: pointer; }
    RESPONSIVE
 ───────────────────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-visual { height: 380px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { min-height: 360px; max-width: min(620px, 100%); margin: 0 auto; width: 100%; }
+  .hero-process-stage { margin-left: auto; margin-right: auto; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .feature-card { grid-template-columns: 1fr; padding: 56px 40px; gap: 40px; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1825,6 +2404,12 @@ button { font-family: inherit; cursor: pointer; }
   .section-head-row { grid-template-columns: 1fr; gap: 24px; align-items: start; }
   .footer-top { grid-template-columns: 1fr 1fr; }
   .py-xl { padding-top: 80px; padding-bottom: 80px; }
+}
+@media (max-width: 768px) {
+  .wrap {
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
+  }
 }
 @media (max-width: 800px) {
   .pillars { grid-template-columns: 1fr; }
@@ -1835,7 +2420,10 @@ button { font-family: inherit; cursor: pointer; }
 }
 @media (max-width: 640px) {
   html { font-size: 16px; }
-  .wrap { padding: 0 20px; }
+  .wrap {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
   #recognition::before {
     background-position: 24% 44%;
     background-size: min(155vw, 640px);
@@ -1847,15 +2435,22 @@ button { font-family: inherit; cursor: pointer; }
   .band { margin: 8px 8px; border-radius: var(--r-xl); }
   .photo-banner { margin: 8px 8px; height: 280px; border-radius: var(--r-xl); }
   .photo-banner-quote { font-size: 1.4rem; }
-  .nav-links { display: none; }
-  .nav-inner { grid-template-columns: 1fr auto; }
   .nav-brand-logo { height: 38px; }
   .hero { border-radius: 0 0 32px 32px; }
-  .hero-visual { display: none; }
+  .hero-highlights { grid-template-columns: 1fr; max-width: 100%; }
+  .hero-visual { min-height: 300px; max-width: 100%; order: 2; }
+  .hero-copy { order: 1; }
+  .hero-cta .btn {
+    flex: 1 1 100%;
+    min-width: 0;
+    white-space: normal;
+    justify-content: center;
+    text-align: center;
+  }
   .feature-card { padding: 40px 28px; }
-  .pillar-card { padding: 32px 28px; }
-  .pillar-num { font-size: 56px; }
-  .pillar-head { margin-top: 60px; font-size: 1.6rem; }
+  .pillar-card { padding: 24px 20px; }
+  .pillar-num { font-size: 48px; top: 14px; right: 16px; }
+  .pillar-head { margin-top: 0; font-size: 1.78rem; }
   .steps { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
@@ -1863,6 +2458,18 @@ button { font-family: inherit; cursor: pointer; }
   .form-card { padding: 28px 22px; }
   .cta { padding: 44px 28px; border-radius: var(--r-xl); }
   .unis { padding: 24px; }
+  .trust-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .trust-items { justify-content: flex-start; gap: 24px; }
+  .footer-legal { flex-wrap: wrap; gap: 12px 20px; }
+  .footer-brand-logo { height: 88px; width: auto; max-width: 220px; object-fit: contain; }
+  .lede { font-size: 1.08rem; }
+  .py-xl { padding-top: 56px; padding-bottom: 56px; }
+  .pt-xl { padding-top: 56px; }
+  .pb-xl { padding-bottom: 56px; }
 
   .ai-agent-panel {
     width: calc(100vw - 24px);
@@ -1939,9 +2546,9 @@ button { font-family: inherit; cursor: pointer; }
   transform: translateY(14px) scale(0.98);
   transform-origin: bottom right;
   transition:
-    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0.3s;
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.55s;
 }
 .ai-agent--open .ai-agent-panel {
   opacity: 1;
@@ -2039,6 +2646,14 @@ button { font-family: inherit; cursor: pointer; }
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+.ai-agent-code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.88em;
+  background: var(--mint-100);
+  padding: 1px 6px;
+  border-radius: 4px;
+  word-break: break-all;
+}
 .ai-agent-msg--user a { color: var(--mint-100); }
 .ai-agent-typing {
   align-self: flex-start;
@@ -2126,25 +2741,40 @@ button { font-family: inherit; cursor: pointer; }
 <!-- ════════════════════════════════════════════════════════════════════════════
      NAVIGATION
 ═══════════════════════════════════════════════════════════════════════════════ -->
-<nav class="nav">
+<nav class="nav" id="siteNav">
   <div class="wrap">
     <div class="nav-inner">
       <a href="#home" class="nav-brand" aria-label="SuGanit Bio-Renewables — Home">
         <img class="nav-brand-logo" src="assets/logo2.png" alt="SuGanit Bio-Renewables" width="1518" height="1116" decoding="async">
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links nav-links--desktop">
         <li><a href="#home"        class="active">Home</a></li>
         <li><a href="#mission"                  >Mission</a></li>
-        <li><a href="#platform"                 >The Platform</a></li>
-        <li><a href="#about"                    >About</a></li>
-        <li><a href="#recognition"              >Recognition</a></li>
-        <li><a href="#team"                     >Team</a></li>
+        <li><a href="#platform"               >Technology</a></li>
+        <li><a href="#about"                  >About</a></li>
+        <li><a href="#recognition"            >Recognition</a></li>
+        <li><a href="#team"                   >Team</a></li>
       </ul>
       <div class="nav-cta-wrap">
-        <a href="#contact" class="btn btn-dark btn-sm">Get in Touch</a>
+        <a href="#contact" class="btn btn-dark btn-sm nav-cta-desktop">Get in Touch</a>
+        <button type="button" class="nav-menu-btn" id="navMenuBtn" aria-expanded="false" aria-controls="navMobilePanel" aria-label="Open menu">
+          <span class="nav-menu-icon" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
+    <div class="nav-mobile-panel" id="navMobilePanel">
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#platform">Technology</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#recognition">Recognition</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-dark nav-mobile-cta">Get in Touch</a>
+    </div>
   </div>
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 </nav>
 
 
@@ -2162,36 +2792,54 @@ button { font-family: inherit; cursor: pointer; }
           Bio-renewable fuels · chemicals · materials
         </div>
         <h1 class="hero-head">
-          Sustainability<br>
-          is our <em>DNA.</em>
+          <span class="hero-head-line hero-head-line--row">Turning</span>
+          <span class="hero-head-line hero-head-line--row">Agricultural waste</span>
+          <span class="hero-head-line hero-head-line--row hero-head-line--last">into <em>clean energy</em></span>
         </h1>
         <p class="hero-sub">
-          We develop and commercialize cost-competitive bio-renewable fuels, chemicals,
-          and materials from ligno-cellulosic biomass — helping communities everywhere
-          meet their needs, sustainably.
+          We convert agricultural residue and biomass into ethanol, biogas, and sustainable aviation fuel —
+          powering a cleaner future.
         </p>
         <div class="hero-cta">
-          <a href="#platform" class="btn btn-dark btn-lg">Explore the platform →</a>
-          <a href="#about"    class="btn btn-ghost btn-lg">About us</a>
+          <a href="#platform" class="btn btn-dark btn-lg">Explore Our Technology →</a>
+          <a href="#platform" class="btn btn-light btn-lg">See Our Products</a>
         </div>
-        <div class="hero-social">
-          <div class="hero-social-stars">★ ★ ★ ★ ★</div>
-          <span>Backed by the <strong>US Dept. of Energy, USDA</strong>, and <strong>5+ patents</strong></span>
+        <div class="hero-highlights">
+          <div class="hero-hl">
+            <div class="hero-hl-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 3h6M10 3v5.2c0 1.7-2.5 3.9-2.5 6.8A4.5 4.5 0 0 0 12 19.5a4.5 4.5 0 0 0 4.5-4.5c0-2.9-2.5-5.1-2.5-6.8V3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 14h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span class="hero-hl-text">20+ years of R&amp;D</span>
+          </div>
+          <div class="hero-hl">
+            <div class="hero-hl-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V7l8-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="hero-hl-text">Backed by energy innovation</span>
+          </div>
+          <div class="hero-hl">
+            <div class="hero-hl-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3c-4 4-7 7-7 11a7 7 0 1 0 14 0c0-4-3-7-7-11z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="hero-hl-text">Proprietary biomass conversion platform</span>
+          </div>
         </div>
       </div>
 
       <div class="hero-visual reveal">
-        <div class="visual-disc visual-disc-1"></div>
-        <div class="visual-disc visual-disc-2"></div>
-
-
-        <div class="visual-card visual-card-top">
-          <div class="visual-card-num">20+</div>
-          <div class="visual-card-label">Years of research &amp; patented biomass platform</div>
-        </div>
-        <div class="visual-card visual-card-bot">
-          <div class="visual-card-num italic">1M×</div>
-          <div class="visual-card-label">Scale-up achieved — lab bench to industrial</div>
+        <div class="hero-process-stage">
+          <div class="hero-process-ambient" aria-hidden="true">
+            <span class="hero-process-ambient-blob"></span>
+          </div>
+          <div class="hero-process-geo" aria-hidden="true">
+            <span class="hero-geo-el hero-geo-el--ring"></span>
+            <span class="hero-geo-el hero-geo-el--ring-dash"></span>
+            <span class="hero-geo-el hero-geo-el--facet"></span>
+            <span class="hero-geo-el hero-geo-el--arc"></span>
+          </div>
+          <button type="button" class="hero-process-frame process-diagram-frame" aria-label="Enlarge SuGanit conversion diagram">
+            <img class="hero-process-img process-diagram-img" src="assets/processImageHero.png" alt="Agricultural waste flows into SuGanit’s conversion platform, producing ethanol, biogas, and sustainable aviation fuel." width="1518" height="1116" decoding="async">
+          </button>
         </div>
       </div>
 
@@ -2300,7 +2948,6 @@ button { font-family: inherit; cursor: pointer; }
 
       <div class="pillar-card pillar-card-1 reveal" tabindex="0">
         <div class="pillar-num">01</div>
-        <span class="pillar-tag">Renewable</span>
         <h3 class="pillar-head">Be <em>renewable.</em></h3>
         <div class="desc-reveal-wrap"><p class="pillar-body">
           We manufacture renewable fuels, chemicals, and materials — including cellulosic ethanol.
@@ -2311,7 +2958,6 @@ button { font-family: inherit; cursor: pointer; }
 
       <div class="pillar-card pillar-card-2 reveal" tabindex="0">
         <div class="pillar-num">02</div>
-        <span class="pillar-tag">Global · Local</span>
         <h3 class="pillar-head">Be global.<br><em>Be local.</em></h3>
         <div class="desc-reveal-wrap"><p class="pillar-body">
           Technologies designed for communities worldwide — enabling every region to meet its
@@ -2322,7 +2968,6 @@ button { font-family: inherit; cursor: pointer; }
 
       <div class="pillar-card pillar-card-3 reveal" tabindex="0">
         <div class="pillar-num">03</div>
-        <span class="pillar-tag">Environmental</span>
         <h3 class="pillar-head">Be <em>environmental.</em></h3>
         <div class="desc-reveal-wrap"><p class="pillar-body">
           We tap into nature's resources to power our future. As society evolved, our energy needs
@@ -2333,7 +2978,6 @@ button { font-family: inherit; cursor: pointer; }
 
       <div class="pillar-card pillar-card-4 reveal" tabindex="0">
         <div class="pillar-num">04</div>
-        <span class="pillar-tag">Sustainable</span>
         <h3 class="pillar-head">Be <em>sustainable.</em></h3>
         <div class="desc-reveal-wrap"><p class="pillar-body">
           A platform cannot be sustainable long-term if it isn't competitive as a business — and
@@ -2366,29 +3010,29 @@ button { font-family: inherit; cursor: pointer; }
           commercial-grade fuels and chemicals — without competing with food supply.
         </p>
         <ul class="feature-bullets">
-          <li class="feature-bullet">
+          <li class="feature-bullet" tabindex="0">
             <div class="feature-bullet-icon">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#2E9557" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="feature-bullet-text"><strong>Non-food feedstocks.</strong> Agricultural residues, energy crops, and forestry byproducts.</div>
+            <div class="feature-bullet-text"><strong>Non-food feedstocks.</strong><span class="feature-bullet-detail"><span class="feature-bullet-detail-inner">Agricultural residues, energy crops, and forestry byproducts.</span></span></div>
           </li>
-          <li class="feature-bullet">
+          <li class="feature-bullet" tabindex="0">
             <div class="feature-bullet-icon">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#2E9557" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="feature-bullet-text"><strong>Dual-sugar recovery.</strong> Both C5 (pentose) and C6 (hexose) streams commercialized.</div>
+            <div class="feature-bullet-text"><strong>Dual-sugar recovery.</strong><span class="feature-bullet-detail"><span class="feature-bullet-detail-inner">Both C5 (pentose) and C6 (hexose) streams commercialized.</span></span></div>
           </li>
-          <li class="feature-bullet">
+          <li class="feature-bullet" tabindex="0">
             <div class="feature-bullet-icon">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#2E9557" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="feature-bullet-text"><strong>Economic viability.</strong> Best-in-class process economics versus petrochemical alternatives.</div>
+            <div class="feature-bullet-text"><strong>Economic viability.</strong><span class="feature-bullet-detail"><span class="feature-bullet-detail-inner">Best-in-class process economics versus petrochemical alternatives.</span></span></div>
           </li>
-          <li class="feature-bullet">
+          <li class="feature-bullet" tabindex="0">
             <div class="feature-bullet-icon">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#2E9557" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="feature-bullet-text"><strong>Carbon reduction.</strong> Dramatically lower emissions versus fossil-derived counterparts.</div>
+            <div class="feature-bullet-text"><strong>Carbon reduction.</strong><span class="feature-bullet-detail"><span class="feature-bullet-detail-inner">Dramatically lower emissions versus fossil-derived counterparts.</span></span></div>
           </li>
         </ul>
         <a href="#platform" class="btn btn-dark">See how it works →</a>
@@ -2401,7 +3045,7 @@ button { font-family: inherit; cursor: pointer; }
             <h3 class="display display-sm" style="margin-bottom: 8px;">Four product streams, one platform.</h3>
             <p class="body muted" style="margin-bottom: 0;">A single patented conversion technology unlocks four commercial markets.</p>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="platform-output-grid">
             <div style="background: var(--mint-50); border-radius: 12px; padding: 14px 16px;">
               <div style="font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--leaf-2); line-height: 1;">Fuels</div>
               <div style="font-size: 12px; color: var(--ink-3); margin-top: 4px;">Cellulosic ethanol</div>
@@ -2996,7 +3640,7 @@ button { font-family: inherit; cursor: pointer; }
   </div>
 </div>
 
-<!-- SuGanit AI assistant (set window.SUGANIT_AGENT_API for live model; else site Q&A) -->
+<!-- SuGanit AI assistant: offline Q&A uses on-page copy + Swachh Bio PDF facts. Optional API: set window.SUGANIT_AGENT_API; POST body includes knowledgeContext + referenceDeckUrl. -->
 <div class="ai-agent" id="suAiAgent" data-open="false">
   <button type="button" class="ai-agent-launcher" id="suAiAgentOpen" aria-expanded="false" aria-controls="suAiAgentPanel">
     <img class="ai-agent-launcher-logo" src="assets/AI-logo.png" alt="" width="1518" height="1116" decoding="async" aria-hidden="true">
@@ -3007,17 +3651,17 @@ button { font-family: inherit; cursor: pointer; }
       <img class="ai-agent-head-logo" src="assets/logo2.png" alt="" width="1518" height="1116" decoding="async" aria-hidden="true">
       <div class="ai-agent-head-text">
         <div class="ai-agent-head-title" id="suAiAgentTitle">SuGanit Assistant</div>
-        <div class="ai-agent-head-sub">Ask about our mission, platform, and team.</div>
+        <div class="ai-agent-head-sub">Answers use this website and the Swachh Bio 2G SAF &amp; Ethanol briefing (PDF).</div>
       </div>
       <button type="button" class="ai-agent-close" id="suAiAgentClose" aria-label="Close assistant">&times;</button>
     </div>
     <div class="ai-agent-log" id="suAiAgentLog" tabindex="-1" aria-live="polite" aria-relevant="additions">
       <div class="ai-agent-msg ai-agent-msg--agent">
-        Hi — I can summarize what you’ll find on this site, or point you to the right section. Try “What does SuGanit do?” or “How do I contact you?”
+        Hi — I draw on <strong>everything published on this site</strong> plus the <strong>Swachh Bio 2G SAF &amp; Ethanol</strong> slides in <code class="ai-agent-code">assets/</code>. Ask about 2G ethanol, SAF, the India partnership, technology, patents, or contact options.
       </div>
     </div>
     <p class="ai-agent-footnote" id="suAiAgentFootnote">
-      Answers reflect public content on this site. For detailed or confidential topics, contact us directly.
+      Answers use on-page content and the Swachh Bio / SuGanit India partner deck. Not legal or investment advice — confirm details with our team.
     </p>
     <form class="ai-agent-form" id="suAiAgentForm" autocomplete="off">
       <label class="visually-hidden" for="suAiAgentInput">Your message</label>
@@ -3247,6 +3891,53 @@ button { font-family: inherit; cursor: pointer; }
   });
   syncNav();
 
+  (function mobileNav() {
+    const nav = document.getElementById('siteNav');
+    const btn = document.getElementById('navMenuBtn');
+    const panel = document.getElementById('navMobilePanel');
+    const bd = document.getElementById('navBackdrop');
+    if (!nav || !btn || !panel || !bd) return;
+
+    const mq = window.matchMedia('(max-width: 900px)');
+
+    function closeMenu() {
+      nav.classList.remove('nav--menu-open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-no-scroll');
+    }
+
+    function openMenu() {
+      nav.classList.add('nav--menu-open');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-no-scroll');
+    }
+
+    btn.addEventListener('click', () => {
+      if (nav.classList.contains('nav--menu-open')) closeMenu();
+      else openMenu();
+    });
+    bd.addEventListener('click', closeMenu);
+
+    panel.querySelectorAll('.nav-links a').forEach((a) => {
+      a.addEventListener('click', () => {
+        setTimeout(closeMenu, 400);
+      });
+    });
+    const mobileCta = panel.querySelector('.nav-mobile-cta');
+    if (mobileCta) mobileCta.addEventListener('click', () => setTimeout(closeMenu, 400));
+
+    window.addEventListener('resize', () => {
+      if (!mq.matches) closeMenu();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('nav--menu-open')) {
+        closeMenu();
+        btn.focus();
+      }
+    });
+  })();
+
   /* ───────────────────────────────────────────────────────────────────────────
      FALLING LEAVES — leaves drop one-by-one from the top and accumulate as
      residue at the bottom of the Why-Biomass feature card.
@@ -3273,10 +3964,21 @@ button { font-family: inherit; cursor: pointer; }
     let dropped = 0;
     let timer = null;
     let started = false;
+    let pendingTimeouts = [];
 
     function rand(min, max) { return Math.random() * (max - min) + min; }
 
+    function stopDropping() {
+      if (timer) { clearInterval(timer); timer = null; }
+      pendingTimeouts.forEach((id) => clearTimeout(id));
+      pendingTimeouts = [];
+      container.innerHTML = '';
+      dropped = 0;
+      started = false;
+    }
+
     function dropLeaf() {
+      if (!started) return;
       if (dropped >= MAX_LEAVES) {
         if (timer) { clearInterval(timer); timer = null; }
         return;
@@ -3328,7 +4030,10 @@ button { font-family: inherit; cursor: pointer; }
       if (started) return;
       started = true;
       const kickoff = () => {
-        for (let i = 0; i < 5; i++) setTimeout(dropLeaf, i * 300);
+        if (!started) return;
+        for (let i = 0; i < 5; i++) {
+          pendingTimeouts.push(setTimeout(dropLeaf, i * 300));
+        }
         timer = setInterval(dropLeaf, SPAWN_MS);
       };
       const pre = new Image();
@@ -3340,16 +4045,18 @@ button { font-family: inherit; cursor: pointer; }
     }
 
     const visObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) startDropping(); });
+      entries.forEach((e) => {
+        if (e.isIntersecting) startDropping();
+        else stopDropping();
+      });
     }, { threshold: 0.15 });
     visObs.observe(card);
   })();
 
   /* ───────────────────────────────────────────────────────────────────────────
-     SuGanit Assistant — floating chat UI. Without a backend, answers use built-in
-     Q&A from this page. Optional: before this script set
-       window.SUGANIT_AGENT_API = 'https://your.api/chat';
-     POST JSON: { message, messages: [{role, content}, ...] }
+     SuGanit Assistant — offline Q&A + optional API. Set window.SUGANIT_AGENT_API
+     for a live model; each POST includes message, messages[], knowledgeContext
+     (plain text from site + Swachh Bio deck), and referenceDeckUrl.
      Response JSON: { reply } | { text } | { message } | { content }
   ─────────────────────────────────────────────────────────────────────────── */
   (function suganitAssistant() {
@@ -3368,7 +4075,200 @@ button { font-family: inherit; cursor: pointer; }
     const history = [];
 
     if (footnote && window.SUGANIT_AGENT_API) {
-      footnote.textContent = 'Live assistant endpoint connected.';
+      footnote.textContent = 'Live assistant: each request includes site + Swachh Bio deck context for the model.';
+    } else if (footnote) {
+      footnote.textContent = 'Offline Q&A: answers synthesize this page + the Swachh Bio 2G SAF & Ethanol PDF in assets/.';
+    }
+
+    const SUGANIT_REFERENCE_DECK_URL = 'assets/Swachh Bio 2G SAF and Ethanol - Google Slides.pdf';
+
+    /* Plain text for API backends; grounded in extracted slide copy + site. */
+    const SUGANIT_KNOWLEDGE_CONTEXT = [
+      'Reference: SuGanit public website plus PDF "' + SUGANIT_REFERENCE_DECK_URL + '".',
+      'Swachh Bio: exclusive India licensee of SuGanit lignocellulosic platform; establishing 2G biorefineries; seeking offtake partners (EOI/LOI).',
+      'Strategic context (India deck): domestic SAF/2G ethanol as energy security buffer (~88% crude imported); E20 target met 2025; flex-fuel vehicle incentives discussed.',
+      'Sustainability: ag residues (e.g. paddy straw, maize stover); ~85–90% lower carbon intensity vs fossil fuels; cuts residue burning.',
+      'Food vs fuel: 2G uses agricultural waste; LFOM/bio-fertilizer co-products for depleted soils.',
+      'Economics/rural: farmer income stream cited (est. ₹5,000–₹8,000/acre); biomass supply-chain jobs.',
+      'Technology: multi-ton US demo (Maryland); USDA + US DOE funded work; pretreatment/hydrolysis high yields in ~48–72h; fractionation; glucose+xylose co-fermentation → materially more ethanol vs glucose-only pathways (deck: 30–50% more from same biomass).',
+      'Products: biogas/AD, 2G ethanol, ATJ SAF, purified pharma-grade ethanol, by-products; multi-feedstock operations to limit downtime and radius.',
+      'IP: multiple granted US/international patents — ionic liquids for biomass conversion; co-fermentation of C5 and C6 sugars.',
+      'People (Swachh): Praveen Paripati Chairman & SuGanit founder; Harsha Pasunuri CEO; Dr. Guneet Kumar Chief Scientific Advisor; Aravind Janga strategy/risk.',
+      'Commercial: claims price-competitive 2G fuels; Swachh finalizing India commercial SAF site.',
+    ].join('\n');
+
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function knowledgeReply(raw) {
+      const q = raw.toLowerCase().trim();
+      const deckLink =
+        '<a href="' +
+        esc(SUGANIT_REFERENCE_DECK_URL).replace(/ /g, '%20') +
+        '" target="_blank" rel="noopener">Swachh Bio 2G SAF &amp; Ethanol (PDF)</a>';
+
+      const topical = [
+        {
+          m: /\b(saf|sustainable aviation|aviation fuel|jet fuel|atj|alcohol.to|alcohol-to)\b/,
+          r:
+            '<strong>Sustainable Aviation Fuel (SAF):</strong> The partner deck positions 2G ethanol as a primary Indian feedstock pathway for SAF via Alcohol-to-Jet (ATJ), using abundant agricultural residue — with strong carbon savings versus fossil jet. Swachh Bio is finalizing a commercial SAF site in India and seeking offtake partners. See also <a href="#platform">The Platform</a> and ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(2g|second.gen|second-gen|second generation|cellulosic|ag(ricultural)? waste|paddy|stover|straw|residue|ligno)\b/,
+          r:
+            '<strong>Second-generation (2G) fuels:</strong> SuGanit’s platform treats lignocellulosic / agricultural residues (e.g. paddy straw, maize stover) — not food grains — as feedstock for ethanol, biogas, SAF precursors, and co-products. Swachh Bio holds the <strong>exclusive India license</strong> for this validated, scaled technology. More in <a href="#platform">The Platform</a> and ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(e20|ethanol blend|blending|flex.fuel|ffv|flex fuel|35%)\b/,
+          r:
+            '<strong>Ethanol blending & flex fuel:</strong> The deck notes India met its <strong>E20</strong> target in 2025 and has built capacity for higher 1G blend rates, while vehicle limits cap practical blending today. It highlights flex-fuel vehicles and policy (e.g. GST treatment vs EVs) as levers — alongside 2G ethanol and SAF as next frontiers. Details: ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(carbon|emissions|co2|intensity|green premium)\b/,
+          r:
+            '<strong>Carbon intensity:</strong> Materials in ' +
+            deckLink +
+            ' state that SAF/ethanol/biogas from this technology can cut life-cycle carbon intensity by <strong>over 85–90%</strong> versus conventional gasoline, jet, or LPG — depending on pathway and accounting. Explore <a href="#mission">Mission</a> and <a href="#platform">The Platform</a>.',
+        },
+        {
+          m: /\b(lfom|bio.fertil|fertiliz|soil|manure|organic carbon|fermented)\b/,
+          r:
+            '<strong>Soil & bio-fertilizer:</strong> The deck describes <strong>LFOM</strong> (liquid fermented organic manure) from biorefineries — labile carbon to stimulate microbes, support fertigation, and help restore depleted organic matter. See <a href="#mission">Mission</a> and ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(swachh|exclusive license|offtake|eoi|loi|biorefiner)\b/,
+          r:
+            '<strong>Swachh Bio &amp; India:</strong> Swachh Bio has the <strong>exclusive India license</strong> to SuGanit’s platform, is advancing 2G biorefineries, and is seeking <strong>offtake</strong> partners; materials reference EOI/LOI processes. Praveen Paripati is Chairman; leadership also includes CEO Harsha Pasunuri and Chief Scientific Advisor Dr. Guneet Kumar — see <a href="#team">Our Team</a> and ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(maryland|demo|facility|usda|doe|department of energy|department of agriculture)\b/,
+          r:
+            '<strong>R&amp;D & scale-up:</strong> SuGanit developed the platform with US universities, a <strong>multi-ton demo in Maryland</strong>, and funding from <strong>USDA</strong> and the <strong>US Department of Energy</strong>. The technology is licensed to Swachh Bio for India. More: <a href="#recognition">Recognition</a>, <a href="#platform">The Platform</a>, and ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(hydrolysis|pretreat|xylose|pentose|c5|c6|glucose|co-ferment|48.?72)\b/,
+          r:
+            '<strong>Process highlights:</strong> Advanced pretreatment &amp; hydrolysis aim for <strong>high yields within about 48–72 hours</strong>; fractionation allows product tuning; <strong>co-fermentation of C5 and C6 sugars</strong> can deliver substantially more ethanol from the same biomass than glucose-only routes (deck cites ~30–50% uplift). Patents cover ionic liquids and C5/C6 co-fermentation. See <a href="#platform">The Platform</a> and ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(ionic|patent|c5.*c6|intellectual prop)\b/,
+          r:
+            '<strong>IP:</strong> The deck cites <strong>granted US and international patents</strong> on <strong>ionic liquids</strong> to accelerate biomass conversion and on <strong>co-fermentation of pentose and hexose (C5/C6)</strong> sugars. Browse <a href="#recognition">Recognition</a> and ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(multi.feed|multi-feed|feedstock mix|downtime|supply chain|radius)\b/,
+          r:
+            '<strong>Multi-feedstock:</strong> The same plant can run multiple agricultural residues, aiming for <strong>near-zero downtime</strong>, smaller catchment radius, and predictable logistics — described as a supply-chain advantage. ' +
+            deckLink +
+            ' and <a href="#platform">The Platform</a>.',
+        },
+        {
+          m: /\b(biogas|anaerobic|digest)\b/,
+          r:
+            '<strong>Biogas:</strong> The deck shows agricultural waste routed through <strong>anaerobic digestion</strong> to <strong>biogas</strong> alongside the 2G ethanol / SAF value chain. See the process framing on <a href="#platform">The Platform</a> and ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(harsha|pasunuri|guneet|aravind|janga|chairman|ceo.*swachh)\b/,
+          r:
+            '<strong>Swachh Bio leadership (deck):</strong> <strong>Harsha Pasunuri</strong>, CEO; <strong>Praveen Paripati</strong>, Chairman (and SuGanit founder); <strong>Dr. Guneet Kumar</strong>, Chief Scientific Advisor; <strong>Aravind Janga</strong>, risk &amp; strategy. SuGanit’s US team is summarized on <a href="#team">Our Team</a>; cross-check with ' +
+            deckLink +
+            '.',
+        },
+      ];
+
+      for (const { m, r } of topical) {
+        if (m.test(q)) return r;
+      }
+
+      const rules = [
+        { m: /\b(hello|hi|hey)\b/, r: 'Hello — ask about SuGanit’s platform, 2G ethanol, SAF, the Swachh Bio India partnership, patents, or how to reach us. I use this site plus the ' + deckLink + '.' },
+        { m: /\b(thank|thanks)\b/, r: 'You’re welcome. For a human, use <a href="#contact">Get in Touch</a> or email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>.' },
+        { m: /\b(who|founder|praveen|paripati)\b(?!.*\bchair)/, r: '<strong>Praveen Paripati</strong> is the founder and CEO of SuGanit Bio-Renewables LLC (and Chairman of Swachh Bio per partner materials). Patents, AI-assisted process design, and decades in complex systems — see <a href="#team">Our Team</a> and ' + deckLink + '.' },
+        {
+          m: /\b(team|leadership|advisor)\b/,
+          r:
+            'Leadership spans SuGanit in the US and Swachh Bio in India — science, engineering, and strategy. Details in <a href="#team">Our Team</a>; India-side roles summarized in ' +
+            deckLink +
+            '.',
+        },
+        { m: /\b(contact|email|phone|address|reach|office)\b/, r: 'Headquarters: <strong>11921 Freedom Drive, Suite 550, Reston, VA 20190</strong>. Phone <a href="tel:7037360634">703-736-0634</a>, email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>. Or use <a href="#contact">Contact</a>.' },
+        {
+          m: /\b(mission|dna|sustain|vision|principle|conscience)\b/,
+          r:
+            'SuGanit’s mission centers on <strong>sustainability</strong> — cost-competitive bio-renewables from lignocellulosic biomass and local resilience. Read <a href="#mission">Mission</a> and <a href="#about">About</a>; India strategic framing in ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(platform|technology|process)\b/,
+          r:
+            'The platform converts lignocellulosic biomass into fuels, chemicals, and materials with strong economics and IP (pretreatment, C5/C6 fermentation, ionic liquids). Explore <a href="#platform">The Platform</a> and ' +
+            deckLink +
+            '.',
+        },
+        {
+          m: /\b(award|recognition)\b/,
+          r: 'Recognition and milestones: <a href="#recognition">Recognition</a>. R&amp;D funders mentioned in ' + deckLink + ' include USDA and DOE.',
+        },
+        {
+          m: /\b(what|do |does suganit|suganit)\b/,
+          r:
+            'SuGanit <strong>develops and licenses</strong> a lignocellulosic biorefinery platform — ethanol, SAF pathways, biogas, co-products — validated in the US and exclusively licensed in India to Swachh Bio. Start at <a href="#home">Home</a>, <a href="#platform">The Platform</a>, and the deck ' +
+            deckLink +
+            '.',
+        },
+      ];
+      for (const { m, r } of rules) {
+        if (m.test(q)) return r;
+      }
+      return (
+        'I can best answer SuGanit questions using the sections on this page together with the partner briefing ' +
+        deckLink +
+        '. Try keywords like <strong>2G ethanol</strong>, <strong>SAF</strong>, <strong>Swachh Bio</strong>, <strong>patents</strong>, or <strong>feedstock</strong> — or email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>.'
+      );
+    }
+
+    async function getReply(text) {
+      const api = window.SUGANIT_AGENT_API;
+      if (api && typeof api === 'string') {
+        const res = await fetch(api, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: text,
+            messages: history.slice(),
+            knowledgeContext: typeof window.SUGANIT_KNOWLEDGE_CONTEXT === 'string' ? window.SUGANIT_KNOWLEDGE_CONTEXT : SUGANIT_KNOWLEDGE_CONTEXT,
+            referenceDeckUrl: SUGANIT_REFERENCE_DECK_URL,
+          }),
+        });
+        if (!res.ok) throw new Error('Assistant request failed');
+        const data = await res.json().catch(() => ({}));
+        const reply = data.reply || data.text || data.message || data.content;
+        if (!reply) throw new Error('Empty assistant reply');
+        return typeof reply === 'string' ? reply : String(reply);
+      }
+      return knowledgeReply(text);
     }
 
     function setOpen(open) {
@@ -3381,12 +4281,6 @@ button { font-family: inherit; cursor: pointer; }
       } else {
         btnOpen.focus();
       }
-    }
-
-    function esc(s) {
-      const d = document.createElement('div');
-      d.textContent = s;
-      return d.innerHTML;
     }
 
     function addAgentMessage(html) {
@@ -3413,46 +4307,6 @@ button { font-family: inherit; cursor: pointer; }
       logEl.appendChild(row);
       logEl.scrollTop = logEl.scrollHeight;
       return row;
-    }
-
-    function knowledgeReply(raw) {
-      const q = raw.toLowerCase().trim();
-      const rules = [
-        { m: /\b(hello|hi|hey)\b/, r: 'Hello — ask me about SuGanit’s platform, mission, team, or how to get in touch.' },
-        { m: /\b(thank|thanks)\b/, r: 'You’re welcome. If you need a human, use <a href="#contact">Get in Touch</a> or email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>.' },
-        { m: /\b(who|founder|praveen|ceo|paripati)\b/, r: '<strong>Praveen Paripati</strong> is the founder and CEO of SuGanit Bio-Renewables LLC, with decades of experience in complex systems, patents, and AI-assisted process design. See the <a href="#team">Our Team</a> section for more.' },
-        { m: /\b(team|leadership|advisor|guneet|kumar|harsha|aravind)\b/, r: 'Leadership spans science, engineering, and strategy — including a Chief Scientific Advisor and partners such as Swachh Bio in India. Details are in <a href="#team">Our Team</a>.' },
-        { m: /\b(contact|email|phone|address|reach|office)\b/, r: 'Headquarters: <strong>11921 Freedom Drive, Suite 550, Reston, VA 20190</strong>. Phone <a href="tel:7037360634">703-736-0634</a>, email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>. Or use the form in <a href="#contact">Contact</a>.' },
-        { m: /\b(mission|dna|sustain|vision|principle|self-sufficient)\b/, r: 'SuGanit’s mission centers on <strong>sustainability</strong> — engineering cost-competitive bio-renewable fuels, chemicals, and materials from lignocellulosic biomass while strengthening local resilience. Read more under <a href="#mission">Mission</a> and <a href="#about">About</a>.' },
-        { m: /\b(platform|technology|process|biomass|ligno|fuel|chemical|material|ferment)\b/, r: 'The site describes a platform that converts lignocellulosic biomass into renewable fuels, chemicals, and materials — with a focus on commercial viability. Explore <a href="#platform">The Platform</a> and the process diagram there.' },
-        { m: /\b(swachh|india)\b/, r: 'Swachh Bio is SuGanit’s licensed partner in India; Praveen Paripati also serves as Chairman of Swachh Bio. See <a href="#team">Our Team</a>.' },
-        { m: /\b(award|recognition|patent)\b/, r: 'Recognition and milestones are summarized in <a href="#recognition">Recognition</a>. For patents specifically, your footer also links to a Patents page when that content is ready.' },
-        { m: /\b(what|do |does suganit)\b/, r: 'SuGanit <strong>develops and commercializes</strong> bio-renewable fuels, chemicals, and materials from biomass — aiming for solutions that work both environmentally and commercially. Start with the <a href="#home">home</a> hero and <a href="#platform">The Platform</a>.' },
-      ];
-      for (const { m, r } of rules) {
-        if (m.test(q)) return r;
-      }
-      return 'I don’t have a specific answer for that on this page. Browse <a href="#mission">Mission</a>, <a href="#platform">The Platform</a>, <a href="#about">About</a>, or <a href="#contact">Contact</a> — or email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>.';
-    }
-
-    async function getReply(text) {
-      const api = window.SUGANIT_AGENT_API;
-      if (api && typeof api === 'string') {
-        const res = await fetch(api, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            message: text,
-            messages: history.slice(),
-          }),
-        });
-        if (!res.ok) throw new Error('Assistant request failed');
-        const data = await res.json().catch(() => ({}));
-        const reply = data.reply || data.text || data.message || data.content;
-        if (!reply) throw new Error('Empty assistant reply');
-        return typeof reply === 'string' ? reply : String(reply);
-      }
-      return knowledgeReply(text);
     }
 
     btnOpen.addEventListener('click', () => setOpen(true));
