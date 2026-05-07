@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SuGanit Bio-Renewables — Sustainability is our DNA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ── Design Tokens ─────────────────────────────────────────────────────── */
+  :root {
+    --bg:           #F9FAF7;
+    --bg-alt:       #FFFFFF;
+    --surface:      #FFFFFF;
+    --surface-2:    #F4F6F1;
+    --surface-3:    #EBF0E6;
+    --border:       #DDE5D8;
+    --border-dim:   #E8EDE4;
+
+    --text-1:       #141A10;
+    --text-2:       #4A5C42;
+    --text-3:       #8A9C82;
+
+    --green:        #1F9146;
+    --green-bright: #2AB356;
+    --green-dim:    rgba(31,145,70,0.10);
+    --green-subtle: rgba(31,145,70,0.05);
+    --green-mid:    #187A3B;
+
+    --amber:        #E8A020;
+    --amber-dim:    rgba(232,160,32,0.12);
+
+    --white:        #FFFFFF;
+
+    --r-lg:         20px;
+    --r-md:         12px;
+    --r-sm:         8px;
+    --r-pill:       999px;
+
+    --font-sans: "Inter", -apple-system, "Helvetica Neue", sans-serif;
+
+    --max-w: 1200px;
+    --nav-h: 68px;
+
+    --shadow-sm: 0 1px 3px rgba(20,26,16,0.06), 0 1px 2px rgba(20,26,16,0.04);
+    --shadow-md: 0 4px 16px rgba(20,26,16,0.08), 0 2px 6px rgba(20,26,16,0.05);
+    --shadow-lg: 0 12px 40px rgba(20,26,16,0.10), 0 4px 12px rgba(20,26,16,0.06);
+  }
+
+  /* ── Reset ─────────────────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text-1);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  /* ── Utility ───────────────────────────────────────────────────────────── */
+  .container {
+    width: 100%;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 14px;
+    border-radius: var(--r-pill);
+    border: 1.5px solid rgba(31,145,70,0.25);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green);
+    background: var(--green-dim);
+  }
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Nav ───────────────────────────────────────────────────────────────── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: var(--nav-h);
+    background: rgba(249,250,247,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-dim);
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 40px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(31,145,70,0.30);
+  }
+  .nav-logo-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    color: var(--text-1);
+  }
+  .nav-logo-text span { color: var(--green); }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin-left: auto;
+  }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--text-2);
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--text-1); }
+  .nav-links a.active { color: var(--green); font-weight: 600; }
+  .nav-cta { margin-left: 8px; flex-shrink: 0; }
+
+  /* ── Buttons ───────────────────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: var(--r-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: none;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--green);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(31,145,70,0.25);
+  }
+  .btn-primary:hover {
+    background: var(--green-mid);
+    box-shadow: 0 4px 16px rgba(31,145,70,0.30);
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text-1);
+  }
+  .btn-outline:hover {
+    border-color: var(--green);
+    color: var(--green);
+    background: var(--green-dim);
+  }
+  .btn-sm { padding: 7px 16px; font-size: 13px; }
+  .btn-lg { padding: 14px 30px; font-size: 15px; }
+
+  /* ── Hero ──────────────────────────────────────────────────────────────── */
+  .hero {
+    padding-top: calc(var(--nav-h) + 80px);
+    padding-bottom: 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .hero-bg-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .hero-bg-glow {
+    position: absolute;
+    top: -100px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, rgba(31,145,70,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-bg-glow-2 {
+    position: absolute;
+    bottom: 0;
+    left: -100px;
+    width: 500px;
+    height: 400px;
+    background: radial-gradient(ellipse at center, rgba(232,160,32,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    padding-bottom: 0;
+  }
+  .hero-left {}
+  .hero-eyebrow { margin-bottom: 24px; }
+  .hero-headline {
+    font-size: clamp(48px, 5.5vw, 72px);
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -2.5px;
+    color: var(--text-1);
+    margin-bottom: 24px;
+  }
+  .hero-headline .accent { color: var(--green); }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-2);
+    max-width: 480px;
+    line-height: 1.75;
+    margin-bottom: 36px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .hero-right {
+    position: relative;
+    padding-bottom: 48px;
+  }
+  .hero-card-stack {
+    position: relative;
+  }
+  .hero-main-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-lg);
+  }
+  .hero-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 20px;
+  }
+  .hero-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .hero-stat-item {
+    padding: 18px;
+    background: var(--surface-2);
+    border-radius: var(--r-md);
+    border: 1px solid var(--border-dim);
+  }
+  .hero-stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--text-2);
+    font-weight: 500;
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: 60px;
+    left: -32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: 14px 18px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+  }
+  .hero-badge-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(31,145,70,0.2);
+  }
+  .hero-badge-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+  .hero-badge-sub {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 1px;
+  }
+
+  /* ── Trust bar ─────────────────────────────────────────────────────────── */
+  .trust-bar {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    margin-top: 0;
+  }
+  .trust-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .trust-bar-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .trust-bar-sep {
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  .trust-bar-items {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+  .trust-item-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--green-dim);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── Section shared ────────────────────────────────────────────────────── */
+  .section { padding: 100px 0; }
+  .section-alt { background: var(--surface); }
+  .section-header { margin-bottom: 56px; }
+  .section-header .label { margin-bottom: 10px; display: block; }
+  .section-title {
+    font-size: clamp(30px, 3.5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    color: var(--text-1);
+    line-height: 1.1;
+    max-width: 580px;
+  }
+  .section-sub {
+    font-size: 17px;
+    color: var(--text-2);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-top: 14px;
+  }
+  .section-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  /* ── Pillars ───────────────────────────────────────────────────────────── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .pillar-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 32px 28px;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(31,145,70,0.3);
+  }
+  .pillar-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--r-md);
+    background: var(--green-dim);
+    border: 1px solid rgba(31,145,70,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .pillar-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--r-pill);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid rgba(31,145,70,0.2);
+    margin-bottom: 12px;
+  }
+  .pillar-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text-1);
+    margin-bottom: 10px;
+  }
+  .pillar-body {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+
+  /* ── Technology / Process ──────────────────────────────────────────────── */
+  .process-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    margin-bottom: 32px;
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+  .process-step {
+    flex: 1;
+    padding: 30px 24px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .process-step::after {
+    content: "→";
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--green);
+    font-size: 16px;
+    font-weight: 700;
+    z-index: 2;
+    background: var(--surface);
+    padding: 4px 2px;
+  }
+  .process-step:last-child::after { display: none; }
+  .process-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .process-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-1);
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+  .process-desc {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+  .tech-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .tech-highlight {
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+  }
+  .tech-highlight:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .tech-highlight-value {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .tech-highlight-label {
+    font-size: 13px;
+    color: var(--text-1);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .tech-highlight-note {
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.4;
+  }
+
+  /* ── Products ──────────────────────────────────────────────────────────── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .product-card {
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 36px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(31,145,70,0.35);
+  }
+  .product-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .product-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--r-md);
+    background: var(--green-dim);
+    border: 1px solid rgba(31,145,70,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .product-name {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text-1);
+  }
+  .product-category {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-top: 3px;
+  }
+  .product-desc {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+  .product-applications {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .product-app-tag {
+    padding: 4px 12px;
+    border-radius: var(--r-pill);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-2);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+  }
+
+  /* ── Recognition ───────────────────────────────────────────────────────── */
+  .recognition-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .recognition-card {
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    background: var(--surface);
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+  }
+  .recognition-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .recognition-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--r-md);
+    background: var(--green-dim);
+    border: 1px solid rgba(31,145,70,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .recognition-agency {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-1);
+    letter-spacing: -0.2px;
+    margin-bottom: 4px;
+  }
+  .recognition-type {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .recognition-detail {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+  .collab-strip {
+    padding: 28px 32px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .collab-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .collab-sep { width: 1px; height: 20px; background: var(--border); flex-shrink: 0; }
+  .collab-list {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .collab-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  /* ── About ─────────────────────────────────────────────────────────────── */
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-quote {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: -0.3px;
+    color: var(--text-1);
+    border-left: 3px solid var(--green);
+    padding-left: 24px;
+    margin-bottom: 28px;
+  }
+  .about-body {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .about-founder {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    background: var(--surface-2);
+    box-shadow: var(--shadow-sm);
+  }
+  .founder-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .founder-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-1);
+  }
+  .founder-role {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-top: 2px;
+  }
+  .credentials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .credential-item {
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+  .credential-value {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .credential-label {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
+  .mission-box {
+    margin-top: 16px;
+    padding: 28px;
+    border: 1.5px solid rgba(31,145,70,0.2);
+    border-radius: var(--r-md);
+    background: var(--green-subtle);
+  }
+  .mission-box .label { margin-bottom: 10px; display: block; }
+  .mission-text {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.75;
+  }
+
+  /* ── Contact ───────────────────────────────────────────────────────────── */
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .contact-info-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-dim);
+  }
+  .contact-info-item:first-child { padding-top: 0; }
+  .contact-info-item:last-child { border-bottom: none; }
+  .contact-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--r-sm);
+    background: var(--green-dim);
+    border: 1px solid rgba(31,145,70,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-info-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 4px;
+  }
+  .contact-info-value {
+    font-size: 15px;
+    color: var(--text-1);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .contact-form-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+  }
+  .contact-form-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-1);
+    letter-spacing: -0.3px;
+    margin-bottom: 24px;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-1);
+    letter-spacing: -0.1px;
+  }
+  .form-input, .form-select, .form-textarea {
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-sm);
+    color: var(--text-1);
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px 14px;
+    width: 100%;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(31,145,70,0.12);
+    background: var(--surface);
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--text-3); }
+  .form-textarea { resize: vertical; min-height: 110px; }
+  .form-select option { background: var(--surface); }
+
+  /* ── CTA Banner ────────────────────────────────────────────────────────── */
+  .cta-banner {
+    padding: 96px 0;
+    background: var(--green);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .cta-title {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #fff;
+    max-width: 520px;
+    line-height: 1.15;
+  }
+  .cta-title .accent { opacity: 0.75; }
+  .cta-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 10px;
+    max-width: 420px;
+    line-height: 1.6;
+  }
+  .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
+  .btn-white {
+    background: #fff;
+    color: var(--green);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .btn-white:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+  }
+  .btn-ghost-white {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: #fff;
+  }
+  .btn-ghost-white:hover {
+    border-color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* ── Footer ────────────────────────────────────────────────────────────── */
+  .footer {
+    padding: 64px 0 40px;
+    background: var(--text-1);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 36px;
+  }
+  .footer-logo-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(31,145,70,0.4);
+  }
+  .footer-logo-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -0.2px;
+  }
+  .footer-logo-text span { color: var(--green-bright); }
+  .footer-brand-tagline {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.65;
+    max-width: 280px;
+  }
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 18px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    transition: color 0.15s;
+    font-weight: 500;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.9); }
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+  .footer-legal { display: flex; gap: 24px; }
+  .footer-legal a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    transition: color 0.15s;
+  }
+  .footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+  /* ── Scroll animation ───────────────────────────────────────────────────── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .hero-right { display: none; }
+    .hero-sub { max-width: 100%; }
+  }
+  @media (max-width: 900px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .recognition-grid { grid-template-columns: 1fr; }
+    .about-layout { grid-template-columns: 1fr; gap: 40px; }
+    .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+    .cta-inner { flex-direction: column; align-items: flex-start; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .tech-highlights { grid-template-columns: 1fr 1fr; }
+    .process-flow { flex-direction: column; }
+    .process-step::after { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .section-header-row { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+    .nav-links { display: none; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .credentials-grid { grid-template-columns: 1fr; }
+    .tech-highlights { grid-template-columns: 1fr; }
+    .trust-bar-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+
+  /* ── Botanical Decorations ──────────────────────────────────────────────── */
+  .hero-botanicals {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .botanical-leaf-bl {
+    position: absolute;
+    bottom: -80px;
+    left: -90px;
+    width: 480px;
+    opacity: 0.60;
+    transform: rotate(-18deg);
+  }
+  .botanical-leaf-tr {
+    position: absolute;
+    top: -20px;
+    right: -110px;
+    width: 420px;
+    opacity: 0.45;
+    transform: rotate(22deg) scaleX(-1);
+  }
+  .botanical-leaf-tr2 {
+    position: absolute;
+    top: 40%;
+    right: -50px;
+    width: 260px;
+    opacity: 0.30;
+    transform: rotate(-10deg) scaleX(-1);
+  }
+  .cta-botanical-left {
+    position: absolute;
+    left: -60px;
+    bottom: -50px;
+    width: 420px;
+    opacity: 0.14;
+    transform: rotate(20deg);
+    pointer-events: none;
+  }
+  .cta-botanical-right {
+    position: absolute;
+    right: -80px;
+    top: -70px;
+    width: 380px;
+    opacity: 0.14;
+    transform: rotate(-15deg);
+    pointer-events: none;
+  }
+  .section-botanical-right {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%) rotate(8deg);
+    width: 240px;
+    opacity: 0.22;
+    pointer-events: none;
+  }
+  .section-with-botanical {
+    position: relative;
+    overflow: hidden;
+  }
+  .leaf-label-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-bottom: 2px;
+  }
+  @media (max-width: 900px) {
+    .botanical-leaf-bl { width: 300px; }
+    .botanical-leaf-tr { width: 260px; }
+    .botanical-leaf-tr2 { display: none; }
+    .section-botanical-right { display: none; }
+  }
+  @media (max-width: 640px) {
+    .botanical-leaf-bl { opacity: 0.35; width: 220px; }
+    .botanical-leaf-tr { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-mark">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2C5.5 2 3 5 3 9C3 13 6 16 9 16C12 16 15 13 15 9C15 5 12.5 2 9 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+            <path d="M6 9 Q9 5 12 9 Q9 13 6 9Z" fill="white"/>
+          </svg>
+        </div>
+        <span class="nav-logo-text">SuGanit <span>Bio</span>-Renewables</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#technology">Technology</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#recognition">Recognition</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-primary btn-sm">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-bg-dots"></div>
+  <div class="hero-bg-glow"></div>
+  <div class="hero-bg-glow-2"></div>
+
+  <!-- Botanical illustrations -->
+  <div class="hero-botanicals">
+    <!-- Large tropical leaf — bottom left -->
+    <svg class="botanical-leaf-bl" viewBox="0 0 240 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Petiole -->
+      <path d="M120,415 C120,400 120,385 120,370" stroke="#1F9146" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+      <!-- Main leaf body: elongated lance shape -->
+      <path d="M120,370 C88,348 38,292 18,220 C0,152 12,82 45,46 C62,28 85,16 120,12 C155,16 178,28 195,46 C228,82 240,152 222,220 C202,292 152,348 120,370Z"
+            fill="#1F9146" fill-opacity="0.14" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.2"/>
+      <!-- Midrib -->
+      <path d="M120,12 L120,370" stroke="#1F9146" stroke-opacity="0.35" stroke-width="2.2" stroke-linecap="round"/>
+      <!-- Left lateral veins -->
+      <path d="M120,55  C102,52  78,60  56,76"  stroke="#1F9146" stroke-opacity="0.26" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M120,100 C98,97  68,108 44,128"  stroke="#1F9146" stroke-opacity="0.26" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M120,148 C94,146 60,160 36,186"  stroke="#1F9146" stroke-opacity="0.26" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M120,196 C97,197 68,213 48,240"  stroke="#1F9146" stroke-opacity="0.23" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M120,244 C101,248 78,265 65,292"  stroke="#1F9146" stroke-opacity="0.20" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M120,292 C106,297 90,313 82,338"  stroke="#1F9146" stroke-opacity="0.16" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+      <!-- Right lateral veins (mirror) -->
+      <path d="M120,55  C138,52  162,60  184,76"  stroke="#1F9146" stroke-opacity="0.26" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M120,100 C142,97  172,108 196,128" stroke="#1F9146" stroke-opacity="0.26" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M120,148 C146,146 180,160 204,186" stroke="#1F9146" stroke-opacity="0.26" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <path d="M120,196 C143,197 172,213 192,240" stroke="#1F9146" stroke-opacity="0.23" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M120,244 C139,248 162,265 175,292" stroke="#1F9146" stroke-opacity="0.20" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M120,292 C134,297 150,313 158,338" stroke="#1F9146" stroke-opacity="0.16" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+      <!-- Secondary small leaf sprouting at base -->
+      <path d="M115,360 C90,350 62,335 45,315 C35,300 40,282 55,278 C68,278 82,290 95,310 C105,328 112,348 115,360Z"
+            fill="#1F9146" fill-opacity="0.10" stroke="#1F9146" stroke-opacity="0.18" stroke-width="1"/>
+      <path d="M115,360 L55,278" stroke="#1F9146" stroke-opacity="0.20" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+
+    <!-- Large round leaf — top right (alocasia / elephant ear) -->
+    <svg class="botanical-leaf-tr" viewBox="0 0 300 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Petiole -->
+      <path d="M150,328 C150,312 150,300 150,288" stroke="#1F9146" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
+      <!-- Rounded heart-shaped leaf body -->
+      <path d="M150,288
+        C124,278 80,256 52,225
+        C24,194 12,155 18,118
+        C24,81 48,50 80,30
+        C100,18 124,10 150,10
+        C176,10 200,18 220,30
+        C252,50 276,81 282,118
+        C288,155 276,194 248,225
+        C220,256 176,278 150,288Z"
+            fill="#187A3B" fill-opacity="0.12" stroke="#1F9146" stroke-opacity="0.20" stroke-width="1.2"/>
+      <!-- Midrib -->
+      <path d="M150,10 L150,288" stroke="#1F9146" stroke-opacity="0.30" stroke-width="2" stroke-linecap="round"/>
+      <!-- Radiating veins — left -->
+      <path d="M150,250 C122,238  88,232  58,240" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M150,200 C120,186  82,178  52,188" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M150,155 C118,140  82,130  54,140" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M150,112 C122,96   90,86   65,95"  stroke="#1F9146" stroke-opacity="0.20" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M150,72  C128,58  105,50  84,57"   stroke="#1F9146" stroke-opacity="0.18" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+      <path d="M150,38  C133,27  115,22  100,28"  stroke="#1F9146" stroke-opacity="0.15" stroke-width="1"   stroke-linecap="round" fill="none"/>
+      <!-- Radiating veins — right (mirror) -->
+      <path d="M150,250 C178,238 212,232 242,240" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M150,200 C180,186 218,178 248,188" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M150,155 C182,140 218,130 246,140" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+      <path d="M150,112 C178,96  210,86  235,95"  stroke="#1F9146" stroke-opacity="0.20" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M150,72  C172,58  195,50  216,57"  stroke="#1F9146" stroke-opacity="0.18" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+      <path d="M150,38  C167,27  185,22  200,28"  stroke="#1F9146" stroke-opacity="0.15" stroke-width="1"   stroke-linecap="round" fill="none"/>
+    </svg>
+
+    <!-- Smaller accent leaf — mid right -->
+    <svg class="botanical-leaf-tr2" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Stem -->
+      <path d="M80,275 L80,262" stroke="#1F9146" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+      <!-- Leaf body — narrower, pointed -->
+      <path d="M80,262 C60,244 25,198 16,148 C8,100 18,55 40,30 C52,17 66,10 80,8 C94,10 108,17 120,30 C142,55 152,100 144,148 C135,198 100,244 80,262Z"
+            fill="#2AB356" fill-opacity="0.11" stroke="#2AB356" stroke-opacity="0.18" stroke-width="1"/>
+      <!-- Midrib -->
+      <path d="M80,8 L80,262" stroke="#1F9146" stroke-opacity="0.28" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Veins — left -->
+      <path d="M80,50  C66,48  50,55  36,68"  stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M80,95  C62,93  44,102 28,118" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M80,140 C60,140 40,150 26,168" stroke="#1F9146" stroke-opacity="0.20" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+      <path d="M80,185 C63,187 46,198 36,218" stroke="#1F9146" stroke-opacity="0.17" stroke-width="1"   stroke-linecap="round" fill="none"/>
+      <path d="M80,226 C68,230 55,242 50,260" stroke="#1F9146" stroke-opacity="0.13" stroke-width="0.9" stroke-linecap="round" fill="none"/>
+      <!-- Veins — right -->
+      <path d="M80,50  C94,48  110,55  124,68"  stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M80,95  C98,93  116,102 132,118"  stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      <path d="M80,140 C100,140 120,150 134,168"  stroke="#1F9146" stroke-opacity="0.20" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+      <path d="M80,185 C97,187 114,198 124,218"  stroke="#1F9146" stroke-opacity="0.17" stroke-width="1"   stroke-linecap="round" fill="none"/>
+      <path d="M80,226 C92,230 105,242 110,260"  stroke="#1F9146" stroke-opacity="0.13" stroke-width="0.9" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-left fade-up">
+        <div class="hero-eyebrow">
+          <span class="pill">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+              <circle cx="4" cy="4" r="3" fill="#1F9146"/>
+            </svg>
+            Bio-Renewable Fuels · Chemicals · Materials
+          </span>
+        </div>
+        <h1 class="hero-headline">
+          Sustainability<br>is our <span class="accent">DNA.</span>
+        </h1>
+        <p class="hero-sub">
+          SuGanit Bio-Renewables engineers cost-competitive bio-based fuels, chemicals,
+          and materials from ligno-cellulosic biomass — empowering communities worldwide
+          to meet their energy and material needs without compromise.
+        </p>
+        <div class="hero-actions">
+          <a href="#technology" class="btn btn-primary btn-lg">Explore Our Technology</a>
+          <a href="#products" class="btn btn-outline btn-lg">View Products</a>
+        </div>
+      </div>
+      <div class="hero-right fade-up">
+        <div class="hero-card-stack">
+          <div class="hero-main-card">
+            <div class="hero-card-label">Key Milestones</div>
+            <div class="hero-stats-grid">
+              <div class="hero-stat-item">
+                <div class="hero-stat-value">20+</div>
+                <div class="hero-stat-label">Years of R&amp;D</div>
+              </div>
+              <div class="hero-stat-item">
+                <div class="hero-stat-value">1M×</div>
+                <div class="hero-stat-label">Scale-up achieved</div>
+              </div>
+              <div class="hero-stat-item">
+                <div class="hero-stat-value">3</div>
+                <div class="hero-stat-label">Federal grants won</div>
+              </div>
+              <div class="hero-stat-item">
+                <div class="hero-stat-value">5+</div>
+                <div class="hero-stat-label">Patents granted</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-badge">
+            <div class="hero-badge-dot"></div>
+            <div>
+              <div class="hero-badge-text">DOE &amp; USDA Funded</div>
+              <div class="hero-badge-sub">Federally validated platform</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Trust Bar ───────────────────────────────────────────────────────────── -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <span class="trust-bar-label">Funded &amp; Recognized by</span>
+      <div class="trust-bar-sep"></div>
+      <div class="trust-bar-items">
+        <div class="trust-item">
+          <div class="trust-item-icon">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1.5L8.5 5H12.5L9.5 7.5L10.5 11.5L7 9L3.5 11.5L4.5 7.5L1.5 5H5.5L7 1.5Z" stroke="#1F9146" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          US Dept. of Energy
+        </div>
+        <div class="trust-item">
+          <div class="trust-item-icon">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1.5L8.5 5H12.5L9.5 7.5L10.5 11.5L7 9L3.5 11.5L4.5 7.5L1.5 5H5.5L7 1.5Z" stroke="#1F9146" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          US Dept. of Agriculture
+        </div>
+        <div class="trust-item">
+          <div class="trust-item-icon">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1.5L8.5 5H12.5L9.5 7.5L10.5 11.5L7 9L3.5 11.5L4.5 7.5L1.5 5H5.5L7 1.5Z" stroke="#1F9146" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          State of Ohio
+        </div>
+        <div class="trust-item">
+          <div class="trust-item-icon">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="3" y="2" width="8" height="10" rx="1.5" stroke="#1F9146" stroke-width="1.2"/>
+              <path d="M5 5H9M5 7H9M5 9H7" stroke="#1F9146" stroke-width="0.9" stroke-linecap="round"/>
+            </svg>
+          </div>
+          5+ Patents Granted
+        </div>
+        <div class="trust-item">
+          <div class="trust-item-icon">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="5" stroke="#1F9146" stroke-width="1.2"/>
+              <path d="M7 4V7.5L9.5 9" stroke="#1F9146" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          Ohio State · Univ. of Akron · Case Western
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Our Ethos / Pillars ─────────────────────────────────────────────────── -->
+<section class="section" id="ethos">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">
+        <svg class="leaf-label-icon" width="12" height="14" viewBox="0 0 12 14" fill="none">
+          <path d="M6,13 C4,11.5 1,8.5 1,5.5 C1,3 3,1 6,1 C9,1 11,3 11,5.5 C11,8.5 8,11.5 6,13Z" fill="#1F9146" fill-opacity="0.5" stroke="#1F9146" stroke-width="0.8" stroke-linejoin="round"/>
+          <line x1="6" y1="1" x2="6" y2="13" stroke="#1F9146" stroke-width="0.7" stroke-opacity="0.6"/>
+        </svg>
+        Our Ethos
+      </span>
+      <h2 class="section-title">Four commitments.<br>One mission.</h2>
+      <p class="section-sub">Every decision we make is guided by four core principles that define how we operate, innovate, and grow.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card fade-up">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 3C8 3 5 6 5 10C5 12 6 13.5 7 14.5" stroke="#1F9146" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M11 3C14 3 17 6 17 10C17 12 16 13.5 15 14.5" stroke="#1F9146" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8 17C9 17.5 10 18 11 18C12 18 13 17.5 14 17" stroke="#1F9146" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="11" cy="10" r="2.5" fill="#1F9146" opacity="0.3" stroke="#1F9146" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="pillar-tag">Renewable</div>
+        <div class="pillar-title">Be Renewable</div>
+        <p class="pillar-body">Manufacturing cellulosic ethanol and bio-based chemicals from ligno-cellulosic biomass — nature's most abundant raw material, turning agricultural residue into high-value products.</p>
+      </div>
+      <div class="pillar-card fade-up">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="7" stroke="#1F9146" stroke-width="1.5"/>
+            <ellipse cx="11" cy="11" rx="3.5" ry="7" stroke="#1F9146" stroke-width="1.5"/>
+            <path d="M4 11H18" stroke="#1F9146" stroke-width="1.5"/>
+            <path d="M5 8H17M5 14H17" stroke="#1F9146" stroke-width="1" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="pillar-tag">Global</div>
+        <div class="pillar-title">Be Global. Be Local.</div>
+        <p class="pillar-body">Technologies designed for communities worldwide — enabling every region to meet energy and material needs sustainably, cost-competitively, and with local feedstocks.</p>
+      </div>
+      <div class="pillar-card fade-up">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 18C11 18 5 14 5 9C5 6.8 7 5 9 5C10 5 10.5 5.5 11 6C11.5 5.5 12 5 13 5C15 5 17 6.8 17 9C17 14 11 18 11 18Z" fill="#1F9146" opacity="0.15" stroke="#1F9146" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="pillar-tag">Environmental</div>
+        <div class="pillar-title">Be Environmental</div>
+        <p class="pillar-body">Tapping into nature's available resources to power our future. Biofuels bring energy production full circle — back to sustainable origins with dramatically reduced carbon footprints.</p>
+      </div>
+      <div class="pillar-card fade-up">
+        <div class="pillar-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 4V18M6 9L11 4L16 9" stroke="#1F9146" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 15H15" stroke="#1F9146" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="pillar-tag">Sustainable</div>
+        <div class="pillar-title">Be Sustainable</div>
+        <p class="pillar-body">A platform is only sustainable if it's competitive as a business. We prove that environmental responsibility and commercial viability are not opposites — they are prerequisites.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Technology Platform ────────────────────────────────────────────────── -->
+<section class="section section-alt" id="technology">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">
+        <svg class="leaf-label-icon" width="12" height="14" viewBox="0 0 12 14" fill="none">
+          <path d="M6,13 C4,11.5 1,8.5 1,5.5 C1,3 3,1 6,1 C9,1 11,3 11,5.5 C11,8.5 8,11.5 6,13Z" fill="#1F9146" fill-opacity="0.5" stroke="#1F9146" stroke-width="0.8" stroke-linejoin="round"/>
+          <line x1="6" y1="1" x2="6" y2="13" stroke="#1F9146" stroke-width="0.7" stroke-opacity="0.6"/>
+        </svg>
+        Technology Platform
+      </span>
+      <h2 class="section-title">Patented biomass<br>conversion at scale</h2>
+      <p class="section-sub">
+        Nearly two decades of R&amp;D have produced a robust, patented platform
+        to extract C5 &amp; C6 sugars and derivatives from ligno-cellulosic biomass —
+        scaled a million-fold with proven process economics.
+      </p>
+    </div>
+
+    <div class="process-flow fade-up">
+      <div class="process-step">
+        <div class="process-num">Step 01</div>
+        <div class="process-name">Biomass Sourcing</div>
+        <p class="process-desc">Agricultural residues, energy crops, and forestry byproducts — locally available, globally consistent.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">Step 02</div>
+        <div class="process-name">Pre-treatment</div>
+        <p class="process-desc">Proprietary pre-treatment breaks down lignocellulose structure, maximizing sugar accessibility.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">Step 03</div>
+        <div class="process-name">Sugar Extraction</div>
+        <p class="process-desc">Selective C5 &amp; C6 sugar streams isolated with high purity via patented separation technology.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">Step 04</div>
+        <div class="process-name">Conversion</div>
+        <p class="process-desc">Biochemical conversion routes to ethanol, specialty chemicals, and platform molecules.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">Step 05</div>
+        <div class="process-name">End Products</div>
+        <p class="process-desc">Fuels, pharma inputs, nutraceuticals, agricultural chemicals — from one unified platform.</p>
+      </div>
+    </div>
+
+    <div class="tech-highlights fade-up">
+      <div class="tech-highlight">
+        <div class="tech-highlight-value">1,000,000×</div>
+        <div class="tech-highlight-label">Scale-up factor achieved</div>
+        <div class="tech-highlight-note">From lab bench to industrial-scale with full process fidelity</div>
+      </div>
+      <div class="tech-highlight">
+        <div class="tech-highlight-value">C5 + C6</div>
+        <div class="tech-highlight-label">Dual sugar stream recovery</div>
+        <div class="tech-highlight-note">Both pentose and hexose streams captured and commercialized</div>
+      </div>
+      <div class="tech-highlight">
+        <div class="tech-highlight-value">Best-in-class</div>
+        <div class="tech-highlight-label">Process economics</div>
+        <div class="tech-highlight-note">Validated cost competitiveness versus petrochemical alternatives</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Products ───────────────────────────────────────────────────────────── -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Product Portfolio</span>
+      <h2 class="section-title">Four product streams.<br>One platform.</h2>
+      <p class="section-sub">
+        A single biomass-conversion platform unlocks four distinct commercial product
+        streams, each addressing a multi-billion dollar global market.
+      </p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card fade-up">
+        <div class="product-header">
+          <div>
+            <div class="product-name">Cellulosic Ethanol</div>
+            <div class="product-category">Renewable Fuel</div>
+          </div>
+          <div class="product-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M11 4V18M7 8L11 4L15 8" stroke="#1F9146" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 14C5 16.2 7.7 18 11 18C14.3 18 17 16.2 17 14" stroke="#1F9146" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="product-desc">
+          Drop-in renewable transportation fuel produced from non-food lignocellulosic
+          feedstocks. Compatible with existing fuel infrastructure — no engine modifications required.
+        </p>
+        <div class="product-applications">
+          <span class="product-app-tag">Transportation</span>
+          <span class="product-app-tag">Aviation Blend</span>
+          <span class="product-app-tag">Power Generation</span>
+        </div>
+      </div>
+
+      <div class="product-card fade-up">
+        <div class="product-header">
+          <div>
+            <div class="product-name">C5 &amp; C6 Sugar Derivatives</div>
+            <div class="product-category">Specialty Chemicals</div>
+          </div>
+          <div class="product-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="11" r="4" stroke="#1F9146" stroke-width="1.5"/>
+              <circle cx="5" cy="7" r="2" stroke="#1F9146" stroke-width="1.2"/>
+              <circle cx="17" cy="7" r="2" stroke="#1F9146" stroke-width="1.2"/>
+              <circle cx="5" cy="15" r="2" stroke="#1F9146" stroke-width="1.2"/>
+              <circle cx="17" cy="15" r="2" stroke="#1F9146" stroke-width="1.2"/>
+              <path d="M7 8L9 10M13 10L15 8M7 14L9 12M13 12L15 14" stroke="#1F9146" stroke-width="1" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+        <p class="product-desc">
+          High-purity pentose and hexose sugar streams and their derivatives, serving
+          pharmaceutical synthesis, nutraceutical formulation, and precision fermentation.
+        </p>
+        <div class="product-applications">
+          <span class="product-app-tag">Pharma</span>
+          <span class="product-app-tag">Nutraceuticals</span>
+          <span class="product-app-tag">Fermentation</span>
+        </div>
+      </div>
+
+      <div class="product-card fade-up">
+        <div class="product-header">
+          <div>
+            <div class="product-name">Bio-based Materials</div>
+            <div class="product-category">Sustainable Polymers</div>
+          </div>
+          <div class="product-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="4" y="4" width="6" height="6" rx="1.5" stroke="#1F9146" stroke-width="1.5"/>
+              <rect x="12" y="4" width="6" height="6" rx="1.5" stroke="#1F9146" stroke-width="1.5"/>
+              <rect x="4" y="12" width="6" height="6" rx="1.5" stroke="#1F9146" stroke-width="1.5"/>
+              <rect x="12" y="12" width="6" height="6" rx="1.5" stroke="#1F9146" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <p class="product-desc">
+          Renewable polymers, resins, and specialty chemicals that directly replace
+          fossil-derived petrochemical inputs across industrial and consumer applications.
+        </p>
+        <div class="product-applications">
+          <span class="product-app-tag">Packaging</span>
+          <span class="product-app-tag">Adhesives</span>
+          <span class="product-app-tag">Industrial Chemicals</span>
+        </div>
+      </div>
+
+      <div class="product-card fade-up">
+        <div class="product-header">
+          <div>
+            <div class="product-name">Agricultural Inputs</div>
+            <div class="product-category">AgBio</div>
+          </div>
+          <div class="product-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <path d="M11 18V10" stroke="#1F9146" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M11 14C11 14 7 12 6 8C8 7 11 9 11 14Z" fill="#1F9146" opacity="0.25" stroke="#1F9146" stroke-width="1.2"/>
+              <path d="M11 12C11 12 15 10 16 6C14 5 11 7 11 12Z" fill="#1F9146" opacity="0.25" stroke="#1F9146" stroke-width="1.2"/>
+              <path d="M7 18H15" stroke="#1F9146" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="product-desc">
+          Bio-derived crop protectants, soil amendments, and growth enhancers produced
+          as high-value co-products from the core biomass conversion process.
+        </p>
+        <div class="product-applications">
+          <span class="product-app-tag">Crop Protection</span>
+          <span class="product-app-tag">Soil Health</span>
+          <span class="product-app-tag">Precision AgBio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Recognition ────────────────────────────────────────────────────────── -->
+<section class="section section-alt" id="recognition">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Recognition</span>
+      <h2 class="section-title">Validated by the world's<br>leading institutions</h2>
+      <p class="section-sub">
+        Competitive grants from the US Department of Energy, USDA, and the State of Ohio
+        — alongside a growing patent portfolio — reflect the rigor and viability of our platform.
+      </p>
+    </div>
+    <div class="recognition-grid">
+      <div class="recognition-card fade-up">
+        <div class="recognition-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 3L13.5 8.5L19.5 9.3L15 13.5L16.2 19.5L11 16.5L5.8 19.5L7 13.5L2.5 9.3L8.5 8.5L11 3Z" stroke="#1F9146" stroke-width="1.4" stroke-linejoin="round" fill="#1F9146" fill-opacity="0.08"/>
+          </svg>
+        </div>
+        <div>
+          <div class="recognition-type">Grant Award</div>
+          <div class="recognition-agency">US Dept. of Energy</div>
+          <p class="recognition-detail">Competitive federal grant for cellulosic biomass conversion technology development and process validation.</p>
+        </div>
+      </div>
+      <div class="recognition-card fade-up">
+        <div class="recognition-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 3L13.5 8.5L19.5 9.3L15 13.5L16.2 19.5L11 16.5L5.8 19.5L7 13.5L2.5 9.3L8.5 8.5L11 3Z" stroke="#1F9146" stroke-width="1.4" stroke-linejoin="round" fill="#1F9146" fill-opacity="0.08"/>
+          </svg>
+        </div>
+        <div>
+          <div class="recognition-type">Grant Award</div>
+          <div class="recognition-agency">US Dept. of Agriculture</div>
+          <p class="recognition-detail">USDA grant supporting biorefinery scale-up and agri-feedstock integration for rural bio-economy development.</p>
+        </div>
+      </div>
+      <div class="recognition-card fade-up">
+        <div class="recognition-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 3L13.5 8.5L19.5 9.3L15 13.5L16.2 19.5L11 16.5L5.8 19.5L7 13.5L2.5 9.3L8.5 8.5L11 3Z" stroke="#1F9146" stroke-width="1.4" stroke-linejoin="round" fill="#1F9146" fill-opacity="0.08"/>
+          </svg>
+        </div>
+        <div>
+          <div class="recognition-type">State Grant</div>
+          <div class="recognition-agency">State of Ohio</div>
+          <p class="recognition-detail">Regional funding for bio-economy infrastructure support, enabling community-level technology deployment.</p>
+        </div>
+      </div>
+      <div class="recognition-card fade-up">
+        <div class="recognition-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="5" y="3" width="12" height="16" rx="2" stroke="#1F9146" stroke-width="1.4" fill="#1F9146" fill-opacity="0.08"/>
+            <path d="M8 8H14M8 11H14M8 14H11" stroke="#1F9146" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="recognition-type">Patents Granted</div>
+          <div class="recognition-agency">US Patent Office</div>
+          <p class="recognition-detail">Proprietary C5/C6 sugar extraction and derivatives platform — granted patents protecting core conversion technology.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="collab-strip fade-up">
+      <span class="collab-label">University Collaborations</span>
+      <div class="collab-sep"></div>
+      <div class="collab-list">
+        <span class="collab-name">Ohio State University</span>
+        <span style="color: var(--border); font-size: 18px">·</span>
+        <span class="collab-name">University of Akron</span>
+        <span style="color: var(--border); font-size: 18px">·</span>
+        <span class="collab-name">Case Western Reserve</span>
+        <span style="color: var(--border); font-size: 18px">·</span>
+        <span class="collab-name">US Research Universities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ──────────────────────────────────────────────────────────────── -->
+<section class="section section-with-botanical" id="about">
+  <!-- Fern frond accent -->
+  <svg class="section-botanical-right" viewBox="0 0 180 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M90,415 C92,380 95,330 100,270 C106,205 114,148 125,95 C132,60 140,30 148,8"
+          stroke="#1F9146" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+    <path d="M91,395 C80,384 68,372 62,360 C58,352 62,344 72,344 C80,345 88,355 91,370Z" fill="#1F9146" fill-opacity="0.16" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1"/>
+    <path d="M91,395 C76,385 55,376 36,378" stroke="#1F9146" stroke-opacity="0.25" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path d="M93,358 C82,346 70,333 65,319 C61,311 66,303 76,304 C85,306 93,318 93,338Z" fill="#1F9146" fill-opacity="0.15" stroke="#1F9146" stroke-opacity="0.20" stroke-width="1"/>
+    <path d="M93,358 C78,344 58,332 38,332" stroke="#1F9146" stroke-opacity="0.25" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path d="M95,320 C85,307 74,292 70,277 C67,268 73,260 83,261 C91,263 98,277 97,300Z" fill="#1F9146" fill-opacity="0.14" stroke="#1F9146" stroke-opacity="0.19" stroke-width="1"/>
+    <path d="M95,320 C80,304 60,290 40,287" stroke="#1F9146" stroke-opacity="0.24" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M97,280 C88,266 78,250 75,235 C73,226 79,218 89,220 C97,222 103,237 101,260Z" fill="#1F9146" fill-opacity="0.13" stroke="#1F9146" stroke-opacity="0.18" stroke-width="1"/>
+    <path d="M97,280 C83,263 64,248 45,244" stroke="#1F9146" stroke-opacity="0.23" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M100,240 C92,225 83,208 81,193 C80,184 86,177 96,179 C104,182 109,197 107,220Z" fill="#1F9146" fill-opacity="0.12" stroke="#1F9146" stroke-opacity="0.17" stroke-width="0.9"/>
+    <path d="M100,240 C87,222 70,206 52,200" stroke="#1F9146" stroke-opacity="0.22" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M103,200 C96,184 88,167 87,152 C86,143 93,136 103,139 C111,142 114,158 112,180Z" fill="#1F9146" fill-opacity="0.11" stroke="#1F9146" stroke-opacity="0.16" stroke-width="0.9"/>
+    <path d="M103,200 C92,182 76,166 59,159" stroke="#1F9146" stroke-opacity="0.21" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M107,160 C101,143 94,126 94,111 C94,102 101,96 111,99 C119,103 121,119 118,140Z" fill="#1F9146" fill-opacity="0.10" stroke="#1F9146" stroke-opacity="0.15" stroke-width="0.8"/>
+    <path d="M107,160 C97,142 83,127 67,120" stroke="#1F9146" stroke-opacity="0.20" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+    <path d="M111,120 C106,104 100,87 100,72 C100,63 107,57 117,61 C124,65 126,80 122,101Z" fill="#1F9146" fill-opacity="0.09" stroke="#1F9146" stroke-opacity="0.13" stroke-width="0.8"/>
+    <path d="M111,120 C103,103 91,89 77,83" stroke="#1F9146" stroke-opacity="0.18" stroke-width="1" stroke-linecap="round" fill="none"/>
+    <path d="M116,80 C113,65 108,50 109,36 C110,28 117,23 125,27 C131,32 131,47 127,66Z" fill="#1F9146" fill-opacity="0.08" stroke="#1F9146" stroke-opacity="0.12" stroke-width="0.7"/>
+    <path d="M116,80 C110,65 100,53 88,48" stroke="#1F9146" stroke-opacity="0.16" stroke-width="0.9" stroke-linecap="round" fill="none"/>
+  </svg>
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">About Us</span>
+      <h2 class="section-title">Science, engineering,<br>and vision — combined.</h2>
+    </div>
+    <div class="about-layout">
+      <div class="fade-up">
+        <blockquote class="about-quote">
+          "While globalization and free trade are good practices, societies enjoy greater
+          and more sustainable freedoms when they are locally self-sufficient in their necessities."
+        </blockquote>
+        <p class="about-body">
+          SuGanit Bio-Renewables is a US-based organization with deep expertise in science,
+          engineering, and finance, coupled with an intrinsic vision of sustainable development.
+          Our team includes members with PhD degrees, MBAs, and graduate degrees across
+          science and engineering disciplines.
+        </p>
+        <p class="about-body">
+          Since inception, SuGanit has focused its attention on both technology development
+          and economic viability. This twin focus, coupled with out-of-the-box thinking and
+          proprietary product development, has enabled us to successfully collaborate and
+          develop patented technology that makes our production goals viable and best-in-class.
+        </p>
+        <div class="about-founder">
+          <div class="founder-avatar">PP</div>
+          <div>
+            <div class="founder-name">Praveen Paripati</div>
+            <div class="founder-role">Founder &amp; CEO, SuGanit Bio-Renewables LLC</div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up">
+        <div class="credentials-grid">
+          <div class="credential-item">
+            <div class="credential-value">PhD+</div>
+            <div class="credential-label">Team credentials across science &amp; engineering</div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-value">20 yr</div>
+            <div class="credential-label">Deep industry &amp; research experience</div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-value">US-based</div>
+            <div class="credential-label">Headquartered in Reston, VA — global reach</div>
+          </div>
+          <div class="credential-item">
+            <div class="credential-value">Twin focus</div>
+            <div class="credential-label">Technology development &amp; economic viability</div>
+          </div>
+        </div>
+        <div class="mission-box">
+          <span class="label">Our Mission</span>
+          <p class="mission-text">
+            To develop and commercialize technologies for producing cost-competitive
+            bio-renewable fuels, chemicals, and materials — enabling communities and
+            regions around the world to effectively and sustainably meet their needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA Banner ─────────────────────────────────────────────────────────── -->
+<div class="cta-banner">
+  <div class="cta-banner-bg"></div>
+
+  <!-- Botanical left -->
+  <svg class="cta-botanical-left" viewBox="0 0 240 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M120,415 C120,400 120,385 120,370" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    <path d="M120,370 C88,348 38,292 18,220 C0,152 12,82 45,46 C62,28 85,16 120,12 C155,16 178,28 195,46 C228,82 240,152 222,220 C202,292 152,348 120,370Z"
+          fill="white" fill-opacity="1" stroke="white" stroke-opacity="0.6" stroke-width="1"/>
+    <path d="M120,12 L120,370" stroke="white" stroke-opacity="0.5" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M120,55  C102,52  78,60  56,76"  stroke="white" stroke-opacity="0.4" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path d="M120,100 C98,97  68,108 44,128"  stroke="white" stroke-opacity="0.4" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path d="M120,148 C94,146 60,160 36,186"  stroke="white" stroke-opacity="0.4" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path d="M120,196 C97,197 68,213 48,240"  stroke="white" stroke-opacity="0.35" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M120,244 C101,248 78,265 65,292"  stroke="white" stroke-opacity="0.30" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M120,292 C106,297 90,313 82,338"  stroke="white" stroke-opacity="0.25" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+    <path d="M120,55  C138,52  162,60  184,76"  stroke="white" stroke-opacity="0.4" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path d="M120,100 C142,97  172,108 196,128" stroke="white" stroke-opacity="0.4" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path d="M120,148 C146,146 180,160 204,186" stroke="white" stroke-opacity="0.4" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path d="M120,196 C143,197 172,213 192,240" stroke="white" stroke-opacity="0.35" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M120,244 C139,248 162,265 175,292" stroke="white" stroke-opacity="0.30" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M120,292 C134,297 150,313 158,338" stroke="white" stroke-opacity="0.25" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+    <path d="M115,360 C90,350 62,335 45,315 C35,300 40,282 55,278 C68,278 82,290 95,310 C105,328 112,348 115,360Z"
+          fill="white" fill-opacity="1" stroke="white" stroke-opacity="0.4" stroke-width="1"/>
+    <path d="M115,360 L55,278" stroke="white" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Botanical right (round alocasia leaf) -->
+  <svg class="cta-botanical-right" viewBox="0 0 300 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M150,328 C150,312 150,300 150,288" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    <path d="M150,288 C124,278 80,256 52,225 C24,194 12,155 18,118 C24,81 48,50 80,30 C100,18 124,10 150,10 C176,10 200,18 220,30 C252,50 276,81 282,118 C288,155 276,194 248,225 C220,256 176,278 150,288Z"
+          fill="white" fill-opacity="1" stroke="white" stroke-opacity="0.5" stroke-width="1.2"/>
+    <path d="M150,10 L150,288" stroke="white" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round"/>
+    <path d="M150,250 C122,238  88,232  58,240" stroke="white" stroke-opacity="0.35" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M150,200 C120,186  82,178  52,188" stroke="white" stroke-opacity="0.35" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M150,155 C118,140  82,130  54,140" stroke="white" stroke-opacity="0.35" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M150,112 C122,96   90,86   65,95"  stroke="white" stroke-opacity="0.32" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M150,72  C128,58  105,50  84,57"   stroke="white" stroke-opacity="0.28" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+    <path d="M150,250 C178,238 212,232 242,240" stroke="white" stroke-opacity="0.35" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M150,200 C180,186 218,178 248,188" stroke="white" stroke-opacity="0.35" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M150,155 C182,140 218,130 246,140" stroke="white" stroke-opacity="0.35" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+    <path d="M150,112 C178,96  210,86  235,95"  stroke="white" stroke-opacity="0.32" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M150,72  C172,58  195,50  216,57"  stroke="white" stroke-opacity="0.28" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+  </svg>
+
+  <div class="container">
+    <div class="cta-inner fade-up">
+      <div>
+        <h2 class="cta-title">
+          Ready to build the<br>future of <span class="accent">bio-energy?</span>
+        </h2>
+        <p class="cta-sub">Partner with us on technology licensing, feedstock supply, joint development, or investment.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#contact" class="btn btn-white btn-lg">Partner With Us</a>
+        <a href="#technology" class="btn btn-ghost-white btn-lg">Learn More</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Contact ────────────────────────────────────────────────────────────── -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Contact Us</span>
+      <h2 class="section-title">Let's build something<br>sustainable, together.</h2>
+    </div>
+    <div class="contact-layout">
+      <div class="fade-up">
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 2C5.8 2 4 3.8 4 6C4 9 8 14 8 14C8 14 12 9 12 6C12 3.8 10.2 2 8 2Z" stroke="#1F9146" stroke-width="1.3"/>
+              <circle cx="8" cy="6" r="1.5" stroke="#1F9146" stroke-width="1.3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Office</div>
+            <div class="contact-info-value">11921 Freedom Drive, Suite 550<br>Reston, VA 20190, USA</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 4C3 3.4 3.4 3 4 3H6L7.5 6.5L6 7.5C6.8 9.1 7.9 10.2 9.5 11L10.5 9.5L14 11V13C14 13.6 13.6 14 13 14C7.5 14 2 8.5 2 3Z" stroke="#1F9146" stroke-width="1.3" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Phone</div>
+            <div class="contact-info-value">703-736-0634</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="2" y="4" width="12" height="9" rx="1.5" stroke="#1F9146" stroke-width="1.3"/>
+              <path d="M2 5.5L8 9.5L14 5.5" stroke="#1F9146" stroke-width="1.3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Inquiries</div>
+            <div class="contact-info-value">info@suganitbio.com</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="6" stroke="#1F9146" stroke-width="1.3"/>
+              <path d="M8 4V8.5L11 10.5" stroke="#1F9146" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-info-label">Areas of Interest</div>
+            <div class="contact-info-value">Technology Licensing · Feedstock Supply<br>Joint Development · Investment</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrapper fade-up">
+        <div class="contact-form-title">Send us a message</div>
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input type="text" class="form-input" placeholder="Jane">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input type="text" class="form-input" placeholder="Smith">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="jane@organization.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Organization</label>
+            <input type="text" class="form-input" placeholder="Your company or institution">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Area of Interest</label>
+            <select class="form-select">
+              <option value="" disabled selected>Select an area...</option>
+              <option>Technology Licensing</option>
+              <option>Feedstock Supply Partnership</option>
+              <option>Joint Development Agreement</option>
+              <option>Investment Inquiry</option>
+              <option>Research Collaboration</option>
+              <option>Media &amp; Press</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Tell us about your interest or project..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 15px;">
+            Send Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-mark">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 2C5.5 2 3 5 3 9C3 13 6 16 9 16C12 16 15 13 15 9C15 5 12.5 2 9 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+            <path d="M6 9 Q9 5 12 9 Q9 13 6 9Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="footer-logo-text">SuGanit <span>Bio</span>-Renewables</div>
+        <p class="footer-brand-tagline">
+          Sustainability is our DNA. Engineering cost-competitive bio-renewable fuels,
+          chemicals, and materials for a world that demands both performance and responsibility.
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#about">Our Mission</a></li>
+          <li><a href="#about">Leadership</a></li>
+          <li><a href="#recognition">Recognition</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Technology</div>
+        <ul class="footer-links">
+          <li><a href="#technology">Platform Overview</a></li>
+          <li><a href="#technology">Process</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#recognition">Patents</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#contact">Licensing</a></li>
+          <li><a href="#contact">Partnerships</a></li>
+          <li><a href="#contact">Media</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 SuGanit Bio-Renewables LLC. All rights reserved. Reston, VA 20190.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Patents</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Scroll animations ───────────────────────────────────────────────────── -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+
+</body>
+</html>
