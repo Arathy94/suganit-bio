@@ -284,9 +284,10 @@ button { font-family: inherit; cursor: pointer; }
 }
 .nav-brand-logo {
   display: block;
-  height: 71px;
+  height: 45px;
   width: auto;
   max-width: 220px;
+  padding-left: 15px;
 }
 .footer-brand-logo {
   display: block;
@@ -1862,6 +1863,261 @@ button { font-family: inherit; cursor: pointer; }
   .form-card { padding: 28px 22px; }
   .cta { padding: 44px 28px; border-radius: var(--r-xl); }
   .unis { padding: 24px; }
+
+  .ai-agent-panel {
+    width: calc(100vw - 24px);
+    right: 12px;
+    bottom: calc(100% + 12px);
+    max-height: min(520px, calc(100vh - 120px));
+  }
+  .ai-agent { right: 12px; bottom: 12px; }
+}
+/* ─────────────────────────────────────────────────────────────────────────────
+   AI ASSISTANT — floating chat (optional API via window.SUGANIT_AGENT_API)
+───────────────────────────────────────────────────────────────────────────── */
+.ai-agent {
+  position: fixed;
+  z-index: 260;
+  right: max(20px, env(safe-area-inset-right, 0px));
+  bottom: max(20px, env(safe-area-inset-bottom, 0px));
+  font-family: var(--sans);
+  -webkit-tap-highlight-color: transparent;
+}
+.ai-agent-launcher {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  display: block;
+  line-height: 0;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ai-agent-launcher:hover {
+  transform: scale(1.06);
+}
+.ai-agent-launcher:focus-visible {
+  outline: 2px solid var(--leaf);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.ai-agent-launcher-logo {
+  display: block;
+  width: min(140px, 42vw);
+  height: auto;
+  max-height: 52px;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 6px 18px rgba(12,26,16,0.28)) drop-shadow(0 2px 6px rgba(12,26,16,0.14));
+  transition: filter 0.22s ease;
+}
+.ai-agent-launcher:hover .ai-agent-launcher-logo {
+  filter: drop-shadow(0 10px 26px rgba(15,77,42,0.32)) drop-shadow(0 3px 10px rgba(12,26,16,0.16));
+}
+.ai-agent--open .ai-agent-launcher {
+  opacity: 0;
+  transform: scale(0.88);
+  pointer-events: none;
+}
+.ai-agent-panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  width: min(392px, calc(100vw - 40px));
+  max-height: min(560px, calc(100vh - 100px));
+  background: #fff;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line-soft);
+  box-shadow: 0 24px 64px rgba(12,26,16,0.18), 0 8px 20px rgba(12,26,16,0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px) scale(0.98);
+  transform-origin: bottom right;
+  transition:
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.3s;
+}
+.ai-agent--open .ai-agent-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+.ai-agent-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 16px 14px;
+  background: linear-gradient(180deg, var(--mint-50) 0%, #fff 100%);
+  border-bottom: 1px solid var(--line-soft);
+}
+.ai-agent-head-logo {
+  display: block;
+  flex-shrink: 0;
+  height: 40px;
+  width: auto;
+  max-width: 132px;
+  object-fit: contain;
+  object-position: left center;
+}
+.ai-agent-head-text { min-width: 0; flex: 1; }
+.ai-agent-head-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--deep);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.ai-agent-head-sub {
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 2px;
+  line-height: 1.35;
+}
+.ai-agent-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.ai-agent-close:hover {
+  background: var(--mint-100);
+  color: var(--deep);
+}
+.ai-agent-close:focus-visible {
+  outline: 2px solid var(--leaf-2);
+  outline-offset: 2px;
+}
+.ai-agent-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 200px;
+  max-height: 340px;
+  scroll-behavior: smooth;
+}
+.ai-agent-msg {
+  max-width: 92%;
+  padding: 10px 13px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.ai-agent-msg--agent {
+  align-self: flex-start;
+  background: var(--mint-50);
+  border: 1px solid var(--mint-200);
+  border-bottom-left-radius: 6px;
+}
+.ai-agent-msg--user {
+  align-self: flex-end;
+  background: var(--forest);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+.ai-agent-msg a {
+  color: var(--leaf-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ai-agent-msg--user a { color: var(--mint-100); }
+.ai-agent-typing {
+  align-self: flex-start;
+  padding: 12px 16px;
+  background: var(--mint-50);
+  border: 1px solid var(--mint-200);
+  border-radius: 14px;
+  border-bottom-left-radius: 6px;
+  display: flex;
+  gap: 5px;
+}
+.ai-agent-typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--leaf-2);
+  animation: ai-agent-dot 1.1s ease-in-out infinite;
+}
+.ai-agent-typing span:nth-child(2) { animation-delay: 0.15s; }
+.ai-agent-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes ai-agent-dot {
+  0%, 80%, 100% { transform: scale(0.75); opacity: 0.45; }
+  40% { transform: scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-agent-panel { transition: opacity 0.15s ease, visibility 0.15s; transform: none; }
+  .ai-agent--open .ai-agent-panel { transform: none; }
+  .ai-agent-typing span { animation: none; opacity: 0.6; }
+}
+.ai-agent-footnote {
+  padding: 0 14px 8px;
+  font-size: 11px;
+  color: var(--ink-4);
+  line-height: 1.45;
+}
+.ai-agent-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--line-soft);
+  background: #fff;
+}
+.ai-agent-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-pill);
+  padding: 10px 16px;
+  font-size: 14px;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--cream);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.ai-agent-input::placeholder { color: var(--ink-4); }
+.ai-agent-input:focus {
+  outline: none;
+  border-color: var(--leaf-2);
+  box-shadow: 0 0 0 3px rgba(61,168,105,0.2);
+  background: #fff;
+}
+.ai-agent-send {
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--r-pill);
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--forest);
+  transition: background 0.15s, transform 0.15s;
+}
+.ai-agent-send:hover { background: var(--forest-2); }
+.ai-agent-send:active { transform: scale(0.97); }
+.ai-agent-send:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
 }
 </style>
 </head>
@@ -1874,7 +2130,7 @@ button { font-family: inherit; cursor: pointer; }
   <div class="wrap">
     <div class="nav-inner">
       <a href="#home" class="nav-brand" aria-label="SuGanit Bio-Renewables — Home">
-        <img class="nav-brand-logo" src="assets/suganitLogoTransparent.png" alt="SuGanit Bio-Renewables" width="624" height="360" decoding="async">
+        <img class="nav-brand-logo" src="assets/logo2.png" alt="SuGanit Bio-Renewables" width="1518" height="1116" decoding="async">
       </a>
       <ul class="nav-links">
         <li><a href="#home"        class="active">Home</a></li>
@@ -2740,6 +2996,37 @@ button { font-family: inherit; cursor: pointer; }
   </div>
 </div>
 
+<!-- SuGanit AI assistant (set window.SUGANIT_AGENT_API for live model; else site Q&A) -->
+<div class="ai-agent" id="suAiAgent" data-open="false">
+  <button type="button" class="ai-agent-launcher" id="suAiAgentOpen" aria-expanded="false" aria-controls="suAiAgentPanel">
+    <img class="ai-agent-launcher-logo" src="assets/AI-logo.png" alt="" width="1518" height="1116" decoding="async" aria-hidden="true">
+    <span class="visually-hidden">Open SuGanit assistant</span>
+  </button>
+  <div class="ai-agent-panel" id="suAiAgentPanel" role="dialog" aria-modal="true" aria-labelledby="suAiAgentTitle" aria-hidden="true">
+    <div class="ai-agent-head">
+      <img class="ai-agent-head-logo" src="assets/logo2.png" alt="" width="1518" height="1116" decoding="async" aria-hidden="true">
+      <div class="ai-agent-head-text">
+        <div class="ai-agent-head-title" id="suAiAgentTitle">SuGanit Assistant</div>
+        <div class="ai-agent-head-sub">Ask about our mission, platform, and team.</div>
+      </div>
+      <button type="button" class="ai-agent-close" id="suAiAgentClose" aria-label="Close assistant">&times;</button>
+    </div>
+    <div class="ai-agent-log" id="suAiAgentLog" tabindex="-1" aria-live="polite" aria-relevant="additions">
+      <div class="ai-agent-msg ai-agent-msg--agent">
+        Hi — I can summarize what you’ll find on this site, or point you to the right section. Try “What does SuGanit do?” or “How do I contact you?”
+      </div>
+    </div>
+    <p class="ai-agent-footnote" id="suAiAgentFootnote">
+      Answers reflect public content on this site. For detailed or confidential topics, contact us directly.
+    </p>
+    <form class="ai-agent-form" id="suAiAgentForm" autocomplete="off">
+      <label class="visually-hidden" for="suAiAgentInput">Your message</label>
+      <input class="ai-agent-input" type="text" id="suAiAgentInput" name="message" placeholder="Ask something…" maxlength="2000">
+      <button type="submit" class="ai-agent-send" id="suAiAgentSend">Send</button>
+    </form>
+  </div>
+</div>
+
 <!-- ════════════════════════════════════════════════════════════════════════════
      SCRIPTS
 ═══════════════════════════════════════════════════════════════════════════════ -->
@@ -3056,6 +3343,152 @@ button { font-family: inherit; cursor: pointer; }
       entries.forEach(e => { if (e.isIntersecting) startDropping(); });
     }, { threshold: 0.15 });
     visObs.observe(card);
+  })();
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     SuGanit Assistant — floating chat UI. Without a backend, answers use built-in
+     Q&A from this page. Optional: before this script set
+       window.SUGANIT_AGENT_API = 'https://your.api/chat';
+     POST JSON: { message, messages: [{role, content}, ...] }
+     Response JSON: { reply } | { text } | { message } | { content }
+  ─────────────────────────────────────────────────────────────────────────── */
+  (function suganitAssistant() {
+    const root = document.getElementById('suAiAgent');
+    const btnOpen = document.getElementById('suAiAgentOpen');
+    const btnClose = document.getElementById('suAiAgentClose');
+    const panel = document.getElementById('suAiAgentPanel');
+    const logEl = document.getElementById('suAiAgentLog');
+    const form = document.getElementById('suAiAgentForm');
+    const input = document.getElementById('suAiAgentInput');
+    const sendBtn = document.getElementById('suAiAgentSend');
+    const footnote = document.getElementById('suAiAgentFootnote');
+    if (!root || !btnOpen || !btnClose || !panel || !logEl || !form || !input || !sendBtn) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const history = [];
+
+    if (footnote && window.SUGANIT_AGENT_API) {
+      footnote.textContent = 'Live assistant endpoint connected.';
+    }
+
+    function setOpen(open) {
+      root.classList.toggle('ai-agent--open', open);
+      root.setAttribute('data-open', open ? 'true' : 'false');
+      btnOpen.setAttribute('aria-expanded', open ? 'true' : 'false');
+      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if (open) {
+        setTimeout(() => input.focus(), 100);
+      } else {
+        btnOpen.focus();
+      }
+    }
+
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function addAgentMessage(html) {
+      const div = document.createElement('div');
+      div.className = 'ai-agent-msg ai-agent-msg--agent';
+      div.innerHTML = html;
+      logEl.appendChild(div);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function addUserMessage(text) {
+      const div = document.createElement('div');
+      div.className = 'ai-agent-msg ai-agent-msg--user';
+      div.textContent = text;
+      logEl.appendChild(div);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function showTyping() {
+      const row = document.createElement('div');
+      row.className = 'ai-agent-typing';
+      row.setAttribute('aria-hidden', 'true');
+      row.innerHTML = '<span></span><span></span><span></span>';
+      logEl.appendChild(row);
+      logEl.scrollTop = logEl.scrollHeight;
+      return row;
+    }
+
+    function knowledgeReply(raw) {
+      const q = raw.toLowerCase().trim();
+      const rules = [
+        { m: /\b(hello|hi|hey)\b/, r: 'Hello — ask me about SuGanit’s platform, mission, team, or how to get in touch.' },
+        { m: /\b(thank|thanks)\b/, r: 'You’re welcome. If you need a human, use <a href="#contact">Get in Touch</a> or email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>.' },
+        { m: /\b(who|founder|praveen|ceo|paripati)\b/, r: '<strong>Praveen Paripati</strong> is the founder and CEO of SuGanit Bio-Renewables LLC, with decades of experience in complex systems, patents, and AI-assisted process design. See the <a href="#team">Our Team</a> section for more.' },
+        { m: /\b(team|leadership|advisor|guneet|kumar|harsha|aravind)\b/, r: 'Leadership spans science, engineering, and strategy — including a Chief Scientific Advisor and partners such as Swachh Bio in India. Details are in <a href="#team">Our Team</a>.' },
+        { m: /\b(contact|email|phone|address|reach|office)\b/, r: 'Headquarters: <strong>11921 Freedom Drive, Suite 550, Reston, VA 20190</strong>. Phone <a href="tel:7037360634">703-736-0634</a>, email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>. Or use the form in <a href="#contact">Contact</a>.' },
+        { m: /\b(mission|dna|sustain|vision|principle|self-sufficient)\b/, r: 'SuGanit’s mission centers on <strong>sustainability</strong> — engineering cost-competitive bio-renewable fuels, chemicals, and materials from lignocellulosic biomass while strengthening local resilience. Read more under <a href="#mission">Mission</a> and <a href="#about">About</a>.' },
+        { m: /\b(platform|technology|process|biomass|ligno|fuel|chemical|material|ferment)\b/, r: 'The site describes a platform that converts lignocellulosic biomass into renewable fuels, chemicals, and materials — with a focus on commercial viability. Explore <a href="#platform">The Platform</a> and the process diagram there.' },
+        { m: /\b(swachh|india)\b/, r: 'Swachh Bio is SuGanit’s licensed partner in India; Praveen Paripati also serves as Chairman of Swachh Bio. See <a href="#team">Our Team</a>.' },
+        { m: /\b(award|recognition|patent)\b/, r: 'Recognition and milestones are summarized in <a href="#recognition">Recognition</a>. For patents specifically, your footer also links to a Patents page when that content is ready.' },
+        { m: /\b(what|do |does suganit)\b/, r: 'SuGanit <strong>develops and commercializes</strong> bio-renewable fuels, chemicals, and materials from biomass — aiming for solutions that work both environmentally and commercially. Start with the <a href="#home">home</a> hero and <a href="#platform">The Platform</a>.' },
+      ];
+      for (const { m, r } of rules) {
+        if (m.test(q)) return r;
+      }
+      return 'I don’t have a specific answer for that on this page. Browse <a href="#mission">Mission</a>, <a href="#platform">The Platform</a>, <a href="#about">About</a>, or <a href="#contact">Contact</a> — or email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>.';
+    }
+
+    async function getReply(text) {
+      const api = window.SUGANIT_AGENT_API;
+      if (api && typeof api === 'string') {
+        const res = await fetch(api, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: text,
+            messages: history.slice(),
+          }),
+        });
+        if (!res.ok) throw new Error('Assistant request failed');
+        const data = await res.json().catch(() => ({}));
+        const reply = data.reply || data.text || data.message || data.content;
+        if (!reply) throw new Error('Empty assistant reply');
+        return typeof reply === 'string' ? reply : String(reply);
+      }
+      return knowledgeReply(text);
+    }
+
+    btnOpen.addEventListener('click', () => setOpen(true));
+    btnClose.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && root.classList.contains('ai-agent--open')) setOpen(false);
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      addUserMessage(text);
+      input.value = '';
+      history.push({ role: 'user', content: text });
+      sendBtn.disabled = true;
+      const typingEl = showTyping();
+      const delay = reduceMotion ? 0 : (window.SUGANIT_AGENT_API ? 400 : 550);
+      const finish = async () => {
+        try {
+          const reply = await getReply(text);
+          typingEl.remove();
+          const safe = window.SUGANIT_AGENT_API ? esc(reply).replace(/\n/g, '<br>') : reply;
+          addAgentMessage(safe);
+          history.push({ role: 'assistant', content: reply.replace(/<[^>]+>/g, '') });
+        } catch (err) {
+          typingEl.remove();
+          addAgentMessage('Something went wrong. Please try again or email <a href="mailto:info@suganitbio.com">info@suganitbio.com</a>.');
+        } finally {
+          sendBtn.disabled = false;
+          input.focus();
+        }
+      };
+      if (delay) setTimeout(finish, delay);
+      else finish();
+    });
   })();
 </script>
 
